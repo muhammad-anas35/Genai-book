@@ -22,8 +22,8 @@ The system will have three main components:
 ## 3. Technology Stack
 
 -   **Frontend Framework**: Docusaurus
--   **Chat UI**: `openai-chatkit`
--   **AI Model**: Gemini family (specific model to be determined based on cost/performance trade-offs)
+-   **Chat UI**: Custom-built within Docusaurus (using React components)
+-   **AI Model**: Gemini family (gemini-pro for chat, embedding-001 for embeddings)
 -   **Primary Database**: Neon DB (Serverless PostgreSQL)
 -   **Vector Database**: Qdrant
 -   **Authentication**: A modern, token-based library (e.g., Lucia Auth, Better Auth)

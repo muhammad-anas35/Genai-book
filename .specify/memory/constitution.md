@@ -1,42 +1,55 @@
-# Book RAG Constitution
+# [PROJECT_NAME] Constitution
+<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
 
 ## Core Principles
 
-### I. Content-First with Docusaurus
-This project is foremost a documentation and knowledge-sharing platform. All development must align with and enhance the Docusaurus ecosystem. Content is the core, and the user experience revolves around reading, searching, and interacting with the book's content.
+### [PRINCIPLE_1_NAME]
+<!-- Example: I. Library-First -->
+[PRINCIPLE_1_DESCRIPTION]
+<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
 
-### II. AI-Powered Interactivity
-The book will be enhanced with a Retrieval-Augmented Generation (RAG) system.
-- **Frontend**: `openai-chatkit` will be used for the chat interface.
-- **Backend**: The chat logic will be powered by a Gemini-family model, configured for our specific use case.
-- **Vector Search**: Qdrant will be the vector database for finding relevant content chunks.
+### [PRINCIPLE_2_NAME]
+<!-- Example: II. CLI Interface -->
+[PRINCIPLE_2_DESCRIPTION]
+<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
 
-### III. Robust and Scalable Data Layer
-- **Primary Database**: Neon DB (serverless PostgreSQL) will be used for storing user data, authentication information, and other relational data.
-- **Vector Database**: Qdrant will store vector embeddings of the book's content for the RAG system.
-- **Data Integrity**: All data models must have clear schemas and validation.
+### [PRINCIPLE_3_NAME]
+<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
+[PRINCIPLE_3_DESCRIPTION]
+<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
 
-### IV. Modern Authentication
-User authentication is critical for personalized features. A modern, token-based authentication library (e.g., Lucia Auth, Better Auth) will be implemented to ensure secure and scalable user management.
+### [PRINCIPLE_4_NAME]
+<!-- Example: IV. Integration Testing -->
+[PRINCIPLE_4_DESCRIPTION]
+<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
 
-### V. Modular and Testable Components
-All new features, especially the AI and data components, should be developed as modular, independently testable units. This includes:
-- Clear separation between the Docusaurus frontend, the chat components, and the backend services.
-- Unit and integration tests for all backend services, especially the RAG pipeline.
+### [PRINCIPLE_5_NAME]
+<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
+[PRINCIPLE_5_DESCRIPTION]
+<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
 
-### VI. Spec-Driven Development
-This project follows the Spec-Driven Development (SDD) methodology. All new features must go through the `/sp.specify`, `/sp.plan`, and `/sp.tasks` workflow before implementation.
+### [PRINCIPLE_6_NAME]
 
-## Development Workflow
 
-- **Specification (`/sp.specify`)**: All features begin with a clear specification.
-- **Planning (`/sp.plan`)**: A detailed technical plan must be created, considering the tech stack (Docusaurus, Neon, Qdrant, Gemini).
-- **Tasking (`/sp.tasks`)**: The plan is broken down into actionable tasks.
-- **Implementation (`/sp.implement`)**: Implementation follows the generated tasks.
-- **Committing (`/sp.git.commit_pr`)**: All work is committed with clear, conventional commit messages and associated with a pull request.
+[PRINCIPLE__DESCRIPTION]
+
+## [SECTION_2_NAME]
+<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+
+[SECTION_2_CONTENT]
+<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+
+## [SECTION_3_NAME]
+<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+
+[SECTION_3_CONTENT]
+<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
 
 ## Governance
+<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-This constitution is the source of truth for the project's architecture and development practices. Any deviation must be discussed and documented in an Architecture Decision Record (ADR) using the `/sp.adr` command.
+[GOVERNANCE_RULES]
+<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
 
-**Version**: 1.0.0 | **Ratified**: 2025-12-02 | **Last Amended**: 2025-12-02
+**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
+<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
