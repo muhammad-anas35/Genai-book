@@ -1,0 +1,31 @@
+.learn {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.learnCard {
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: left;
+  transition: all 0.3s ease-in-out;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.learnCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.learnCard h3 {
+  margin-bottom: 1rem;
+  color: var(--ifm-color-primary);
+}
+
+html[data-theme='dark'] .learnCard {
+  background-color: #242526;
+  border-color: #444;
+}
