@@ -11,9 +11,9 @@
   text-align: left;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  background-size: 200% 200%;
+  animation: gradient 10s ease infinite;
 }
 
 @keyframes gradient {
@@ -30,9 +30,50 @@
   }
 }
 
+.heroContent {
+  padding: 3rem 2rem;
+  z-index: 2;
+}
+
+.heroLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1rem;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: white;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.heroSubtitle {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
 @media screen and (max-width: 996px) {
   .heroBanner {
     text-align: center;
+    min-height: auto;
+    padding: 4rem 0;
+  }
+
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+
+  .heroContent {
+    padding: 2rem 1rem;
   }
 }
 
@@ -40,6 +81,24 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  gap: 1rem;
+}
+
+.buttons .button {
+  background: white;
+  color: #0f3460;
+  border: none;
+  font-weight: 600;
+  padding: 0.875rem 2rem;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.buttons .button:hover {
+  background: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 @media screen and (max-width: 996px) {
@@ -49,13 +108,36 @@
 }
 
 .bookCover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   perspective: 1000px;
+  padding: 2rem;
+  z-index: 2;
 }
 
 .bookCover img {
-  width: 300px;
-  height: 400px;
-  transform: rotateY(-20deg);
-  box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
+  max-width: 100%;
+  height: auto;
+  max-height: 500px;
+  transform: rotateY(-15deg) rotateX(5deg);
+  box-shadow: -20px 20px 30px rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  transition: all 0.5s ease;
+}
+
+.bookCover img:hover {
+  transform: rotateY(0deg) rotateX(0deg) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 996px) {
+  .bookCover {
+    margin-top: 2rem;
+  }
+
+  .bookCover img {
+    transform: none;
+    max-height: 400px;
+  }
 }
