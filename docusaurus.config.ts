@@ -53,8 +53,6 @@ const config: Config = {
     ],
   ],
 
-  plugins: ['./src/plugins/api'],
-
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
@@ -73,11 +71,6 @@ const config: Config = {
           sidebarId: 'tutorialSidebar',
           position: 'left',
           label: 'Textbook',
-        },
-        {
-          to: '/chat', // Link to the new chat page
-          label: 'Chat',
-          position: 'left',
         },
         {
           href: 'https://github.com/your-github-username/Book_RAG',
