@@ -1,0 +1,35 @@
+{
+  "name": "book-rag-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Book RAG authentication and RAG pipeline",
+  "main": "dist/server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev:all": "concurrently \"npm start\" \"npm run dev --prefix ..\"",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "cookie-parser": "^1.4.6",
+    "better-auth": "^1.2.2",
+    "drizzle-orm": "^0.38.3",
+    "@neondatabase/serverless": "^1.0.2",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.6",
+    "@types/cors": "^2.8.17",
+    "@types/cookie-parser": "^1.4.7",
+    "typescript": "^5.3.3",
+    "tsx": "^4.7.0",
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
