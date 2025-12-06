@@ -1,30 +1,21 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenAI } from '@google/genai';
 
 /**
  * Gemini API client for embeddings and chat
+ * Updated to use the new @google/genai SDK
  */
 
 export class GeminiClient {
-    private genAI: GoogleGenerativeAI;
-    private embeddingModel: any;
-    private chatModel: any;
+    private genAI: GoogleGenAI;
+    private embeddingModel: string = 'text-embedding-004';
+    private chatModel: string = 'gemini-2.0-flash';
 
     constructor(apiKey: string) {
         if (!apiKey) {
             throw new Error('GEMINI_API_KEY is required');
         }
 
-        this.genAI = new GoogleGenerativeAI(apiKey);
-        this.embeddingModel = this.genAI.getGenerativeModel({ model: 'embedding-001' });
-        this.chatModel = this.genAI.getGenerativeModel({
-            model: 'gemini-pro',
-            generationConfig: {
-                temperature: 0.7,
-                maxOutputTokens: 1000,
-                topP: 0.9,
-                topK: 40,
-            }
-        });
+        this.genAI = new GoogleGenAI({ apiKey });
     }
 
     /**
@@ -32,8 +23,11 @@ export class GeminiClient {
      */
     async generateEmbedding(text: string): Promise<number[]> {
         try {
-            const result = await this.embeddingModel.embedContent(text);
-            return result.embedding.values;
+            const response = await this.genAI.models.embedContent({
+                model: this.embeddingModel,
+                contents: text,
+            });
+            return response.embeddings?.[0]?.values || [];
         } catch (error) {
             console.error('Error generating embedding:', error);
             throw error;
@@ -73,9 +67,18 @@ export class GeminiClient {
                 ? `Context:\n${context}\n\nQuestion: ${prompt}\n\nAnswer based on the context above:`
                 : prompt;
 
-            const result = await this.chatModel.generateContent(fullPrompt);
-            const response = await result.response;
-            return response.text();
+            const response = await this.genAI.models.generateContent({
+                model: this.chatModel,
+                contents: fullPrompt,
+                config: {
+                    temperature: 0.7,
+                    maxOutputTokens: 1000,
+                    topP: 0.9,
+                    topK: 40,
+                }
+            });
+
+            return response.text || '';
         } catch (error) {
             console.error('Error generating response:', error);
             throw error;
@@ -91,11 +94,21 @@ export class GeminiClient {
                 ? `Context:\n${context}\n\nQuestion: ${prompt}\n\nAnswer based on the context above:`
                 : prompt;
 
-            const result = await this.chatModel.generateContentStream(fullPrompt);
+            const response = await this.genAI.models.generateContentStream({
+                model: this.chatModel,
+                contents: fullPrompt,
+                config: {
+                    temperature: 0.7,
+                    maxOutputTokens: 1000,
+                    topP: 0.9,
+                    topK: 40,
+                }
+            });
 
-            for await (const chunk of result.stream) {
-                const chunkText = chunk.text();
-                yield chunkText;
+            for await (const chunk of response) {
+                if (chunk.text) {
+                    yield chunk.text;
+                }
             }
         } catch (error) {
             console.error('Error generating streaming response:', error);
@@ -120,3 +133,4 @@ export function getGeminiClient(): GeminiClient {
     }
     return geminiClient;
 }
+

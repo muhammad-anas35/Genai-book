@@ -87,3 +87,5 @@ drizzle/
 
 /backend/node_modules
 .env.example
+/backend/.env
+/backend/.env.local

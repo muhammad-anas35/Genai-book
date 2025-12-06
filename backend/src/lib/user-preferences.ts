@@ -1,6 +1,7 @@
 import { db } from '../db';
-import { userPreferences, NewUserPreferences } from '../db/schema/chat';
+import { userPreferences } from '../db/schema/preferences';
 import { eq } from 'drizzle-orm';
+import { v4 as uuidv4 } from 'uuid';
 
 /**
  * User preferences service
@@ -37,6 +38,7 @@ export async function getUserPreferences(userId: string) {
  */
 export async function createUserPreferences(userId: string) {
     const [pref] = await db.insert(userPreferences).values({
+        id: uuidv4(),
         userId,
         theme: 'light',
         language: 'en',

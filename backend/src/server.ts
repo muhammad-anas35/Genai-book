@@ -1,18 +1,30 @@
-import express, { Request, Response, NextFunction } from 'express';
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
-import { db } from '@/db';
-import * as schema from '@/db/schema';
-import { eq } from 'drizzle-orm';
 import dotenv from 'dotenv';
-import crypto from 'crypto';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// Load environment variables from root .env.local
+// Load environment variables FIRST before any other imports
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const envPath = path.resolve(__dirname, '../../../.env.local');
-dotenv.config({ path: envPath });
+
+// Try backend/.env.local first
+dotenv.config({ path: path.resolve(__dirname, '../.env.local') });
+
+// Fallback to root .env.local
+if (!process.env.DATABASE_URL) {
+    dotenv.config({ path: path.resolve(__dirname, '../../.env.local') });
+}
+
+// Now import other modules that need env vars
+import express, { Request, Response, NextFunction } from 'express';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import { db } from './db';
+import * as schema from './db/schema';
+import { eq } from 'drizzle-orm';
+import crypto from 'crypto';
+
+// Import route modules
+import chatRoutes from './routes/chat';
+import preferencesRoutes from './routes/preferences';
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -197,8 +209,6 @@ app.post('/api/auth/signup/email', async (req: AuthRequest, res: Response) => {
             name: name || email.split('@')[0],
             passwordHash,
             emailVerified: false,
-            createdAt: new Date(),
-            updatedAt: new Date(),
         });
 
         console.log('[SIGNUP] User created successfully');
@@ -212,7 +222,6 @@ app.post('/api/auth/signup/email', async (req: AuthRequest, res: Response) => {
             id: sessionId,
             userId,
             expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-            createdAt: new Date(),
         });
 
         console.log('[SIGNUP] Session created');
@@ -305,7 +314,6 @@ app.post('/api/auth/signin/email', async (req: AuthRequest, res: Response) => {
             id: sessionId,
             userId: user.id,
             expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-            createdAt: new Date(),
         });
 
         console.log('[LOGIN] Session created, setting cookie');
@@ -432,8 +440,13 @@ app.get('/api/dashboard', requireAuth, async (req: AuthRequest, res: Response) =
 
 // ========================================
 // CHAT/RAG ROUTES (Protected)
-    }
-});
+// ========================================
+
+// Mount chat routes with authentication
+app.use('/api/chat', requireAuth, chatRoutes);
+
+// Mount preferences routes with authentication
+app.use('/api/preferences', requireAuth, preferencesRoutes);
 
 // ========================================
 // ERROR HANDLING
