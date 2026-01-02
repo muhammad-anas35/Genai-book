@@ -36,7 +36,7 @@
     "@docusaurus/tsconfig": "3.9.2",
     "@docusaurus/types": "3.9.2",
     "concurrently": "^9.1.2",
-    "drizzle-kit": "^0.31.7",
+    "drizzle-kit": "^0.31.8",
     "typescript": "~5.8.3"
   },
   "browserslist": {

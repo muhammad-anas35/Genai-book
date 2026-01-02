@@ -1,16 +1,56 @@
-import dotenv from 'dotenv';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+// Helper to manually load env file
+const loadEnvFile = (filePath: string) => {
+    try {
+        if (!fs.existsSync(filePath)) return false;
+        console.log(`📂 Manual loading: ${filePath}`);
+        const content = fs.readFileSync(filePath, 'utf8');
+        const lines = content.split('\n');
+        let count = 0;
+        for (const line of lines) {
+            const trimmed = line.trim();
+            if (!trimmed || trimmed.startsWith('#')) continue;
+            const eqIdx = trimmed.indexOf('=');
+            if (eqIdx === -1) continue;
+
+            const key = trimmed.slice(0, eqIdx).trim();
+            let val = trimmed.slice(eqIdx + 1).trim();
+
+            // Remove quotes if present
+            if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+                val = val.slice(1, -1);
+            }
+
+            if (key && !process.env[key]) {
+                process.env[key] = val;
+                count++;
+            }
+        }
+        console.log(`✅ Loaded ${count} variables from ${path.basename(filePath)}`);
+        return true;
+    } catch (e: any) {
+        console.error(`❌ Failed to load ${filePath}:`, e.message);
+        return false;
+    }
+};
+
 // Load environment variables FIRST before any other imports
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const envPathBackend = path.resolve(__dirname, '../.env.local');
+const envPathRoot = path.resolve(__dirname, '../../.env.local');
 
 // Try backend/.env.local first
-dotenv.config({ path: path.resolve(__dirname, '../.env.local') });
+if (!loadEnvFile(envPathBackend)) {
+    console.log('⚠️ backend/.env.local not found');
+}
 
-// Fallback to root .env.local
+// Fallback to root .env.local if DATABASE_URL missing
 if (!process.env.DATABASE_URL) {
-    dotenv.config({ path: path.resolve(__dirname, '../../.env.local') });
+    console.log('Trying root .env.local fallback...');
+    loadEnvFile(envPathRoot);
 }
 
 // Now import other modules that need env vars
