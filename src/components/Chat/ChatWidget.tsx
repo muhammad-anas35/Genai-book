@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { sendMessage, ChatMessage } from '../../lib/chat-api';
+import { sendMessage, ChatMessage, getAvailableProviders } from '../../lib/chat-api';
 import './ChatWidget.css';
 
 /**

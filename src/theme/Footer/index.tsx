@@ -6,7 +6,7 @@ import type { WrapperProps } from '@docusaurus/types';
 
 type Props = WrapperProps<typeof FooterType>;
 
-export default function FooterWrapper(props: Props): JSX.Element | null {
+export default function FooterWrapper(props: Props): React.ReactNode {
     const location = useLocation();
     const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
 

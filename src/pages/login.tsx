@@ -4,7 +4,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import styles from './auth.module.css';
 
-export default function Login(): JSX.Element {
+export default function Login(): React.ReactNode {
     const { siteConfig } = useDocusaurusContext();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

@@ -12,7 +12,7 @@ interface UserBackground {
     learningGoals?: string[];
 }
 
-export default function Signup(): JSX.Element {
+export default function Signup(): React.ReactNode {
     const { siteConfig } = useDocusaurusContext();
     const [formData, setFormData] = useState({
         name: '',

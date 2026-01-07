@@ -14,7 +14,16 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps): React
     useEffect(() => {
         const checkAuth = async () => {
             try {
-                const response = await fetch('/api/auth/check');
+                const API_BASE_URL = typeof window !== 'undefined' && window.location.hostname !== 'localhost'
+                    ? ''
+                    : 'http://localhost:4000';
+
+                const response = await fetch(`${API_BASE_URL}/api/auth/check`);
+
+                if (!response.ok) {
+                    throw new Error('Auth check failed');
+                }
+
                 const data = await response.json();
                 setIsAuthenticated(data.authenticated);
 
