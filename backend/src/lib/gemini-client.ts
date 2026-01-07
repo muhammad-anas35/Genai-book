@@ -1,14 +1,15 @@
 import { GoogleGenAI } from '@google/genai';
+import { AIProvider } from './ai-provider';
 
 /**
  * Gemini API client for embeddings and chat
  * Updated to use the new @google/genai SDK
  */
 
-export class GeminiClient {
+export class GeminiClient implements AIProvider {
     private genAI: GoogleGenAI;
     private embeddingModel: string = 'text-embedding-004';
-    private chatModel: string = 'gemini-2.0-flash';
+    private chatModel: string = 'gemini-2.5-flash';
 
     constructor(apiKey: string) {
         if (!apiKey) {
@@ -114,6 +115,21 @@ export class GeminiClient {
             console.error('Error generating streaming response:', error);
             throw error;
         }
+    }
+
+    /**
+     * Get the name of the provider
+     */
+    getName(): string {
+        return 'gemini';
+    }
+
+    /**
+     * Get the embedding dimension
+     */
+    getEmbeddingDimension(): number {
+        // Gemini embedding-004 has 768 dimensions
+        return 768;
     }
 }
 

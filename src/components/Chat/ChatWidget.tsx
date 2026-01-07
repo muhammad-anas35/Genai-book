@@ -12,12 +12,35 @@ export default function ChatWidget() {
     const [isLoading, setIsLoading] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [provider, setProvider] = useState<'gemini' | 'openai'>('gemini');
+    const [availableProviders, setAvailableProviders] = useState<string[]>(['gemini']);
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
     // Auto-scroll to bottom when new messages arrive
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages]);
+
+    // Load available providers on component mount
+    useEffect(() => {
+        const loadProviders = async () => {
+            try {
+                const response = await getAvailableProviders();
+                if (response.success) {
+                    setAvailableProviders(response.providers);
+                    // Set default provider to the first available one
+                    if (response.providers.length > 0) {
+                        setProvider(response.providers[0] as 'gemini' | 'openai');
+                    }
+                }
+            } catch (err) {
+                console.error('Failed to load providers:', err);
+                // Keep default provider as gemini if loading fails
+            }
+        };
+
+        loadProviders();
+    }, []);
 
     const handleSend = async () => {
         if (!input.trim() || isLoading) return;
@@ -33,7 +56,7 @@ export default function ChatWidget() {
         setError(null);
 
         try {
-            const response = await sendMessage(input.trim());
+            const response = await sendMessage(input.trim(), undefined, provider);
 
             if (response.success && response.message) {
                 setMessages(prev => [...prev, response.message]);
@@ -72,6 +95,22 @@ export default function ChatWidget() {
                     <div className="chat-header">
                         <h3>📚 Ask about the Book</h3>
                         <p>Powered by AI & RAG</p>
+                        <div className="provider-selector">
+                            <label htmlFor="provider-select">AI Provider:</label>
+                            <select
+                                id="provider-select"
+                                value={provider}
+                                onChange={(e) => setProvider(e.target.value as 'gemini' | 'openai')}
+                                className="provider-dropdown"
+                                disabled={availableProviders.length <= 1}
+                            >
+                                {availableProviders.map((prov) => (
+                                    <option key={prov} value={prov}>
+                                        {prov.charAt(0).toUpperCase() + prov.slice(1)}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
                     </div>
 
                     {/* Messages */}

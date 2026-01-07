@@ -15,6 +15,20 @@ export interface ChatSettings {
     autoSave?: boolean;
 }
 
+export interface UserBackground {
+    softwareBackground?: string;
+    hardwareBackground?: string;
+    experienceLevel?: 'beginner' | 'intermediate' | 'advanced';
+    primaryInterest?: string;
+    learningGoals?: string[];
+}
+
+export interface PersonalizedContent {
+    preferredTopics?: string[];
+    difficultyLevel?: 'beginner' | 'intermediate' | 'advanced';
+    contentFormat?: 'text' | 'visual' | 'practical' | 'theoretical';
+}
+
 /**
  * Get user preferences
  */
@@ -36,7 +50,7 @@ export async function getUserPreferences(userId: string) {
 /**
  * Create default user preferences
  */
-export async function createUserPreferences(userId: string) {
+export async function createUserPreferences(userId: string, userBackground?: UserBackground) {
     const [pref] = await db.insert(userPreferences).values({
         id: uuidv4(),
         userId,
@@ -47,6 +61,12 @@ export async function createUserPreferences(userId: string) {
             maxTokens: 1000,
             showSources: true,
             autoSave: true,
+        },
+        userBackground: userBackground || null,
+        personalizedContent: {
+            preferredTopics: [],
+            difficultyLevel: 'beginner',
+            contentFormat: 'text',
         },
     }).returning();
 
@@ -62,6 +82,8 @@ export async function updateUserPreferences(
         theme?: string;
         language?: string;
         chatSettings?: ChatSettings;
+        userBackground?: UserBackground;
+        personalizedContent?: PersonalizedContent;
     }
 ) {
     const existing = await getUserPreferences(userId);
@@ -74,6 +96,12 @@ export async function updateUserPreferences(
             chatSettings: updates.chatSettings
                 ? { ...existing.chatSettings as any, ...updates.chatSettings }
                 : existing.chatSettings,
+            userBackground: updates.userBackground !== undefined
+                ? updates.userBackground
+                : existing.userBackground,
+            personalizedContent: updates.personalizedContent !== undefined
+                ? { ...existing.personalizedContent as any, ...updates.personalizedContent }
+                : existing.personalizedContent,
             updatedAt: new Date(),
         })
         .where(eq(userPreferences.userId, userId))
@@ -87,4 +115,18 @@ export async function updateUserPreferences(
  */
 export async function updateChatSettings(userId: string, settings: ChatSettings) {
     return await updateUserPreferences(userId, { chatSettings: settings });
+}
+
+/**
+ * Update user background information
+ */
+export async function updateUserBackground(userId: string, background: UserBackground) {
+    return await updateUserPreferences(userId, { userBackground: background });
+}
+
+/**
+ * Update personalized content preferences
+ */
+export async function updatePersonalizedContent(userId: string, content: PersonalizedContent) {
+    return await updateUserPreferences(userId, { personalizedContent: content });
 }

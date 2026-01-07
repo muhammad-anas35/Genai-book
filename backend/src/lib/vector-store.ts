@@ -1,5 +1,7 @@
 import { getQdrantClient, VectorPoint } from './qdrant-client';
 import { EmbeddingResult } from './embeddings';
+import { ProviderFactory } from './provider-factory';
+import { AIProviderType } from './ai-provider';
 
 /**
  * Vector storage utilities for Qdrant
@@ -8,11 +10,13 @@ import { EmbeddingResult } from './embeddings';
 /**
  * Store embeddings in Qdrant
  */
-export async function storeEmbeddings(embeddings: EmbeddingResult[]): Promise<void> {
+export async function storeEmbeddings(embeddings: EmbeddingResult[], provider: AIProviderType = 'gemini'): Promise<void> {
     const qdrant = getQdrantClient();
+    const aiProvider = ProviderFactory.getProvider(provider);
 
-    // Ensure collection exists
-    await qdrant.ensureCollection(768); // Gemini embedding-001 dimension
+    // Ensure collection exists with the correct dimension for the provider
+    const dimension = aiProvider.getEmbeddingDimension();
+    await qdrant.ensureCollection(dimension);
 
     // Convert to Qdrant points
     const points: VectorPoint[] = embeddings.map(emb => ({
@@ -36,7 +40,7 @@ export async function storeEmbeddings(embeddings: EmbeddingResult[]): Promise<vo
         console.log(`✓ Stored batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(points.length / batchSize)}`);
     }
 
-    console.log(`✓ Stored ${points.length} embeddings in Qdrant`);
+    console.log(`✓ Stored ${points.length} embeddings in Qdrant using ${provider} (dimension: ${dimension})`);
 }
 
 /**

@@ -1,5 +1,7 @@
-import { Router, Response } from 'express';
+import { Router, Request, Response } from 'express';
 import { getUserPreferences, updateUserPreferences } from '../lib/user-preferences';
+import { validatePreferencesInput } from '../middleware/validation';
+import { AppError } from '../utils/error-handler';
 
 /**
  * User preferences routes
@@ -11,7 +13,7 @@ const router = Router();
  * GET /api/preferences
  * Get user preferences
  */
-router.get('/', async (req: any, res: Response) => {
+router.get('/', async (req: any, res: Response, next: any) => {
     try {
         const userId = req.userId;
         const preferences = await getUserPreferences(userId);
@@ -21,12 +23,17 @@ router.get('/', async (req: any, res: Response) => {
             preferences
         });
 
-    } catch (error) {
+    } catch (error: any) {
         console.error('Get preferences error:', error);
-        res.status(500).json({
-            success: false,
-            error: 'Failed to fetch preferences'
-        });
+
+        // Use global error handler
+        if (error instanceof AppError) {
+            return next(error);
+        }
+
+        // For other errors, create a generic AppError
+        const appError = new AppError('Failed to fetch preferences', 500);
+        next(appError);
     }
 });
 
@@ -34,15 +41,17 @@ router.get('/', async (req: any, res: Response) => {
  * PUT /api/preferences
  * Update user preferences
  */
-router.put('/', async (req: any, res: Response) => {
+router.put('/', validatePreferencesInput, async (req: any, res: Response, next: any) => {
     try {
         const userId = req.userId;
-        const { theme, language, chatSettings } = req.body;
+        const { theme, language, chatSettings, userBackground, personalizedContent } = req.body;
 
         const updated = await updateUserPreferences(userId, {
             theme,
             language,
-            chatSettings
+            chatSettings,
+            userBackground,
+            personalizedContent
         });
 
         res.json({
@@ -50,12 +59,17 @@ router.put('/', async (req: any, res: Response) => {
             preferences: updated
         });
 
-    } catch (error) {
+    } catch (error: any) {
         console.error('Update preferences error:', error);
-        res.status(500).json({
-            success: false,
-            error: 'Failed to update preferences'
-        });
+
+        // Use global error handler
+        if (error instanceof AppError) {
+            return next(error);
+        }
+
+        // For other errors, create a generic AppError
+        const appError = new AppError('Failed to update preferences', 500);
+        next(appError);
     }
 });
 
