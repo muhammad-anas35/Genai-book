@@ -24,8 +24,12 @@ export default function Login(): JSX.Element {
             });
 
             if (res.ok) {
-                // Redirect to home page
-                window.location.href = '/';
+                // Check if there's a stored redirect path
+                const redirectPath = sessionStorage.getItem('redirectAfterLogin');
+                sessionStorage.removeItem('redirectAfterLogin');
+
+                // Redirect to stored path or home page
+                window.location.href = redirectPath || '/';
             } else {
                 const data = await res.json();
                 setError(data.error || 'Invalid email or password');
