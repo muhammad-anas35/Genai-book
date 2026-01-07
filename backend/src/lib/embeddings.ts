@@ -1,4 +1,5 @@
-import { getGeminiClient } from './gemini-client';
+import { ProviderFactory } from './provider-factory';
+import { AIProviderType } from './ai-provider';
 import { TextChunk } from './chunking';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -26,17 +27,18 @@ export async function generateEmbeddings(
     chunks: TextChunk[],
     documentPath: string,
     chapter?: string,
-    section?: string
+    section?: string,
+    provider: AIProviderType = 'gemini'
 ): Promise<EmbeddingResult[]> {
-    const gemini = getGeminiClient();
+    const aiProvider = ProviderFactory.getProvider(provider);
     const results: EmbeddingResult[] = [];
 
     // Extract text from chunks
     const texts = chunks.map(chunk => chunk.content);
 
     // Generate embeddings in batch
-    console.log(`Generating embeddings for ${chunks.length} chunks...`);
-    const embeddings = await gemini.generateEmbeddings(texts);
+    console.log(`Generating embeddings for ${chunks.length} chunks using ${provider}...`);
+    const embeddings = await aiProvider.generateEmbeddings(texts);
 
     // Combine with metadata
     for (let i = 0; i < chunks.length; i++) {
@@ -60,7 +62,7 @@ export async function generateEmbeddings(
 /**
  * Generate embedding for a single query
  */
-export async function generateQueryEmbedding(query: string): Promise<number[]> {
-    const gemini = getGeminiClient();
-    return await gemini.generateEmbedding(query);
+export async function generateQueryEmbedding(query: string, provider: AIProviderType = 'gemini'): Promise<number[]> {
+    const aiProvider = ProviderFactory.getProvider(provider);
+    return await aiProvider.generateEmbedding(query);
 }

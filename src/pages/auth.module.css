@@ -270,6 +270,212 @@
   }
 }
 
+/* Progress Bar Styles */
+.progressBar {
+  display: flex;
+  justify-content: space-between;
+  margin: 1.5rem 0 2rem 0;
+  position: relative;
+}
+
+.progressBar::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--ifm-color-emphasis-300);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.progressStep {
+  position: relative;
+  z-index: 2;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--ifm-color-emphasis-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ifm-color-emphasis-600);
+  font-weight: bold;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.progressStep.active {
+  background: var(--ifm-color-primary);
+  color: white;
+  transform: scale(1.1);
+}
+
+.progressStep.completed {
+  background: var(--ifm-color-success);
+  color: white;
+}
+
+.stepTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: var(--ifm-color-emphasis-900);
+  text-align: center;
+}
+
+.stepSubtitle {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+  font-style: italic;
+}
+
+.formTextarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: var(--ifm-color-emphasis-0);
+  color: var(--ifm-color-emphasis-1000);
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.formTextarea:focus {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 3px var(--ifm-color-primary-lighter);
+}
+
+.formTextarea::placeholder {
+  color: var(--ifm-color-emphasis-500);
+}
+
+.formSelect {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: var(--ifm-color-emphasis-0);
+  color: var(--ifm-color-emphasis-1000);
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.formSelect:focus {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 3px var(--ifm-color-primary-lighter);
+}
+
+.goalInputGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.goalInputGroup input {
+  flex: 1;
+}
+
+.removeGoalBtn {
+  background: var(--ifm-color-danger);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.removeGoalBtn:hover {
+  background: var(--ifm-color-danger-dark);
+}
+
+.addGoalBtn {
+  background: transparent;
+  border: 1px dashed var(--ifm-color-emphasis-500);
+  color: var(--ifm-color-emphasis-700);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.addGoalBtn:hover {
+  background: var(--ifm-color-emphasis-200);
+}
+
+.summarySection {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--ifm-color-emphasis-100);
+  border-radius: 8px;
+  border-left: 4px solid var(--ifm-color-primary);
+}
+
+.summarySection h3 {
+  margin: 0 0 0.75rem 0;
+  color: var(--ifm-color-primary);
+  font-size: 1rem;
+}
+
+.summarySection p {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+}
+
+.summarySection ul {
+  margin: 0.5rem 0 0 1.5rem;
+  padding: 0;
+}
+
+.summarySection li {
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+}
+
+.formNavigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.navButton {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: var(--ifm-color-emphasis-0);
+  color: var(--ifm-color-emphasis-900);
+}
+
+.navButton:hover {
+  background-color: var(--ifm-color-emphasis-100);
+  border-color: var(--ifm-color-emphasis-400);
+}
+
 /* Dark mode adjustments */
 html[data-theme='dark'] .authCard {
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
@@ -279,4 +485,12 @@ html[data-theme='dark'] .errorMessage {
   background-color: rgba(200, 50, 50, 0.1);
   border-color: rgba(255, 100, 100, 0.3);
   color: #ff9999;
+}
+
+html[data-theme='dark'] .summarySection {
+  background: var(--ifm-color-emphasis-200);
+}
+
+html[data-theme='dark'] .formNavigation {
+  border-top: 1px solid var(--ifm-color-emphasis-400);
 }

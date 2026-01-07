@@ -1,6 +1,8 @@
 import { db } from '../db';
-import { conversations, chatMessages, NewConversation, NewChatMessage } from '../db/schema/chat';
+import { conversations, chatMessages } from '../db/schema';
 import { eq, desc } from 'drizzle-orm';
+
+import { v4 as uuidv4 } from 'uuid';
 
 /**
  * Chat history service
@@ -11,12 +13,14 @@ import { eq, desc } from 'drizzle-orm';
  * Create a new conversation
  */
 export async function createConversation(userId: string, title?: string): Promise<string> {
-    const [conversation] = await db.insert(conversations).values({
+    const id = uuidv4();
+    await db.insert(conversations).values({
+        id,
         userId,
         title: title || 'New Conversation',
-    }).returning({ id: conversations.id });
+    });
 
-    return conversation.id;
+    return id;
 }
 
 /**
@@ -29,6 +33,7 @@ export async function saveMessage(
     sources?: any[]
 ): Promise<void> {
     await db.insert(chatMessages).values({
+        id: uuidv4(),
         conversationId,
         role,
         content,

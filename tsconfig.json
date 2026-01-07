@@ -4,11 +4,20 @@
   "compilerOptions": {
     "baseUrl": ".",
     "jsx": "react-jsx",
-    "types": ["react", "node", "next"],
+    "types": [
+      "react",
+      "node"
+    ],
     "moduleResolution": "bundler",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     }
   },
-  "exclude": [".docusaurus", "build", "backend"]
+  "exclude": [
+    ".docusaurus",
+    "build",
+    "backend"
+  ]
 }

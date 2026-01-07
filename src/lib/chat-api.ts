@@ -27,14 +27,18 @@ export interface ChatResponse {
     error?: string;
 }
 
-const API_BASE_URL = 'http://localhost:4000';
+// Use relative URL for Vercel deployment, absolute for local dev
+const API_BASE_URL = typeof window !== 'undefined' && window.location.hostname !== 'localhost'
+    ? ''
+    : 'http://localhost:4000';
 
 /**
  * Send a chat message and get AI response
  */
 export async function sendMessage(
     message: string,
-    chapter?: string
+    chapter?: string,
+    provider?: 'gemini' | 'openai'
 ): Promise<ChatResponse> {
     try {
         const response = await fetch(`${API_BASE_URL}/api/chat`, {
@@ -43,7 +47,7 @@ export async function sendMessage(
                 'Content-Type': 'application/json',
             },
             credentials: 'include', // Include cookies for authentication
-            body: JSON.stringify({ message, chapter }),
+            body: JSON.stringify({ message, chapter, provider }),
         });
 
         if (!response.ok) {
@@ -63,7 +67,8 @@ export async function sendMessage(
  */
 export async function* streamMessage(
     message: string,
-    chapter?: string
+    chapter?: string,
+    provider?: 'gemini' | 'openai'
 ): AsyncGenerator<{ type: string; data: any }> {
     try {
         const response = await fetch(`${API_BASE_URL}/api/chat/stream`, {
@@ -72,7 +77,7 @@ export async function* streamMessage(
                 'Content-Type': 'application/json',
             },
             credentials: 'include',
-            body: JSON.stringify({ message, chapter }),
+            body: JSON.stringify({ message, chapter, provider }),
         });
 
         if (!response.ok) {
@@ -124,5 +129,25 @@ export async function getChatHistory(): Promise<any[]> {
     } catch (error) {
         console.error('History API error:', error);
         return [];
+    }
+}
+
+/**
+ * Get available AI providers
+ */
+export async function getAvailableProviders(): Promise<{ success: boolean; providers: string[] }> {
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/chat/providers`, {
+            credentials: 'include',
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch available providers');
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Providers API error:', error);
+        throw error;
     }
 }

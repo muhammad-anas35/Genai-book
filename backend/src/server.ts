@@ -1,18 +1,83 @@
-import express, { Request, Response, NextFunction } from 'express';
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
-import { db } from '@/db';
-import * as schema from '@/db/schema';
-import { eq } from 'drizzle-orm';
-import dotenv from 'dotenv';
-import crypto from 'crypto';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// Load environment variables from root .env.local
+// Helper to manually load env file
+const loadEnvFile = (filePath: string) => {
+    try {
+        if (!fs.existsSync(filePath)) return false;
+        console.log(`📂 Manual loading: ${filePath}`);
+        const content = fs.readFileSync(filePath, 'utf8');
+        const lines = content.split('\n');
+        let count = 0;
+        for (const line of lines) {
+            const trimmed = line.trim();
+            if (!trimmed || trimmed.startsWith('#')) continue;
+            const eqIdx = trimmed.indexOf('=');
+            if (eqIdx === -1) continue;
+
+            const key = trimmed.slice(0, eqIdx).trim();
+            let val = trimmed.slice(eqIdx + 1).trim();
+
+            // Remove quotes if present
+            if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+                val = val.slice(1, -1);
+            }
+
+            if (key && !process.env[key]) {
+                process.env[key] = val;
+                count++;
+            }
+        }
+        console.log(`✅ Loaded ${count} variables from ${path.basename(filePath)}`);
+        return true;
+    } catch (e: any) {
+        console.error(`❌ Failed to load ${filePath}:`, e.message);
+        return false;
+    }
+};
+
+// Load environment variables FIRST before any other imports
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const envPath = path.resolve(__dirname, '../../../.env.local');
-dotenv.config({ path: envPath });
+const envPathBackend = path.resolve(__dirname, '../.env.local');
+const envPathRoot = path.resolve(__dirname, '../../.env.local');
+
+// Try backend/.env.local first
+if (!loadEnvFile(envPathBackend)) {
+    console.log('⚠️ backend/.env.local not found');
+}
+
+// Fallback to root .env.local if DATABASE_URL missing
+if (!process.env.DATABASE_URL) {
+    console.log('Trying root .env.local fallback...');
+    loadEnvFile(envPathRoot);
+}
+
+// Now import other modules that need env vars
+import express, { Request, Response, NextFunction } from 'express';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import { db } from './db';
+import * as schema from './db/schema';
+import { eq } from 'drizzle-orm';
+import bcrypt from 'bcryptjs';
+
+// Import route modules
+import chatRoutes from './routes/chat';
+import preferencesRoutes from './routes/preferences';
+
+// Import user preferences service
+import { createUserPreferences } from './lib/user-preferences';
+
+// Import validation middleware
+import {
+  validateSignupInput,
+  validateLoginInput,
+  validateChatInput
+} from './middleware/validation';
+
+// Import error handling utilities
+import { globalErrorHandler, AppError } from './utils/error-handler';
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -143,29 +208,13 @@ app.get('/api/auth/session', async (req: AuthRequest, res: Response) => {
 /**
  * Email/Password Registration
  * POST /api/auth/signup/email
- * Body: { email, password, name }
+ * Body: { email, password, name, userBackground }
  */
-app.post('/api/auth/signup/email', async (req: AuthRequest, res: Response) => {
+app.post('/api/auth/signup/email', validateSignupInput, async (req: AuthRequest, res: Response) => {
     try {
-        const { email, password, name } = req.body;
+        const { email, password, name, userBackground } = req.body;
 
-        console.log('[SIGNUP] Request received:', { email, name, passwordLength: password?.length });
-
-        // Validate input
-        if (!email || !password) {
-            console.warn('[SIGNUP] Missing email or password');
-            return res.status(400).json({ error: 'Email and password required' });
-        }
-
-        if (password.length < 8) {
-            console.warn('[SIGNUP] Password too short');
-            return res.status(400).json({ error: 'Password must be at least 8 characters' });
-        }
-
-        if (!email.includes('@')) {
-            console.warn('[SIGNUP] Invalid email format');
-            return res.status(400).json({ error: 'Invalid email format' });
-        }
+        console.log('[SIGNUP] Request received:', { email, name, passwordLength: password?.length, hasUserBackground: !!userBackground });
 
         // Check if user already exists
         console.log('[SIGNUP] Checking if user exists:', email.toLowerCase());
@@ -180,12 +229,10 @@ app.post('/api/auth/signup/email', async (req: AuthRequest, res: Response) => {
             return res.status(409).json({ error: 'User already exists' });
         }
 
-        // Hash password
+        // Hash password with bcrypt
         console.log('[SIGNUP] Hashing password');
-        const passwordHash = crypto
-            .createHash('sha256')
-            .update(password + process.env.BETTER_AUTH_SECRET)
-            .digest('hex');
+        const saltRounds = 12;
+        const passwordHash = await bcrypt.hash(password, saltRounds);
 
         // Create user
         const userId = crypto.randomBytes(16).toString('hex');
@@ -197,11 +244,20 @@ app.post('/api/auth/signup/email', async (req: AuthRequest, res: Response) => {
             name: name || email.split('@')[0],
             passwordHash,
             emailVerified: false,
-            createdAt: new Date(),
-            updatedAt: new Date(),
         });
 
         console.log('[SIGNUP] User created successfully');
+
+        // Create user preferences with background info
+        if (userBackground) {
+            console.log('[SIGNUP] Creating user preferences with background:', userBackground);
+            await createUserPreferences(userId, userBackground);
+        } else {
+            console.log('[SIGNUP] Creating default user preferences');
+            await createUserPreferences(userId);
+        }
+
+        console.log('[SIGNUP] User preferences created');
 
         // Create session token
         const sessionToken = crypto.randomBytes(32).toString('hex');
@@ -212,7 +268,6 @@ app.post('/api/auth/signup/email', async (req: AuthRequest, res: Response) => {
             id: sessionId,
             userId,
             expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-            createdAt: new Date(),
         });
 
         console.log('[SIGNUP] Session created');
@@ -245,10 +300,15 @@ app.post('/api/auth/signup/email', async (req: AuthRequest, res: Response) => {
             detail: error.detail,
             stack: error.stack
         });
-        res.status(500).json({
-            error: 'Signup failed. Please try again.',
-            details: process.env.NODE_ENV === 'development' ? error.message : undefined
-        });
+
+        // Use global error handler
+        if (error instanceof AppError) {
+            return next(error);
+        }
+
+        // For other errors, create a generic AppError
+        const appError = new AppError('Signup failed. Please try again.', 500);
+        next(appError);
     }
 });
 
@@ -257,16 +317,11 @@ app.post('/api/auth/signup/email', async (req: AuthRequest, res: Response) => {
  * POST /api/auth/signin/email
  * Body: { email, password }
  */
-app.post('/api/auth/signin/email', async (req: AuthRequest, res: Response) => {
+app.post('/api/auth/signin/email', validateLoginInput, async (req: AuthRequest, res: Response) => {
     try {
         const { email, password } = req.body;
 
         console.log('[LOGIN] Request received:', { email });
-
-        if (!email || !password) {
-            console.warn('[LOGIN] Missing email or password');
-            return res.status(400).json({ error: 'Email and password required' });
-        }
 
         // Find user
         console.log('[LOGIN] Finding user:', email.toLowerCase());
@@ -284,13 +339,9 @@ app.post('/api/auth/signin/email', async (req: AuthRequest, res: Response) => {
         const user = users[0];
         console.log('[LOGIN] User found, verifying password');
 
-        // Verify password
-        const passwordHash = crypto
-            .createHash('sha256')
-            .update(password + process.env.BETTER_AUTH_SECRET)
-            .digest('hex');
-
-        if (passwordHash !== user.passwordHash) {
+        // Verify password with bcrypt
+        const isValidPassword = await bcrypt.compare(password, user.passwordHash);
+        if (!isValidPassword) {
             console.warn('[LOGIN] Invalid password for:', email);
             return res.status(401).json({ error: 'Invalid email or password' });
         }
@@ -305,7 +356,6 @@ app.post('/api/auth/signin/email', async (req: AuthRequest, res: Response) => {
             id: sessionId,
             userId: user.id,
             expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-            createdAt: new Date(),
         });
 
         console.log('[LOGIN] Session created, setting cookie');
@@ -338,10 +388,15 @@ app.post('/api/auth/signin/email', async (req: AuthRequest, res: Response) => {
             detail: error.detail,
             stack: error.stack
         });
-        res.status(500).json({
-            error: 'Login failed. Please try again.',
-            details: process.env.NODE_ENV === 'development' ? error.message : undefined
-        });
+
+        // Use global error handler
+        if (error instanceof AppError) {
+            return next(error);
+        }
+
+        // For other errors, create a generic AppError
+        const appError = new AppError('Login failed. Please try again.', 500);
+        next(appError);
     }
 });
 
@@ -432,24 +487,29 @@ app.get('/api/dashboard', requireAuth, async (req: AuthRequest, res: Response) =
 
 // ========================================
 // CHAT/RAG ROUTES (Protected)
-    }
-});
+// ========================================
+
+// Mount chat routes with authentication
+app.use('/api/chat', requireAuth, chatRoutes);
+
+// Mount preferences routes with authentication
+app.use('/api/preferences', requireAuth, preferencesRoutes);
 
 // ========================================
 // ERROR HANDLING
 // ========================================
 
-app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-    console.error('Unhandled error:', err);
-    res.status(500).json({
-        error: 'Internal server error',
-        message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong'
+// 404 handler for undefined routes
+app.use('*', (req: express.Request, res: express.Response) => {
+    const error = new AppError(`Route ${req.originalUrl} not found`, 404);
+    res.status(404).json({
+        success: false,
+        error: error.message
     });
 });
 
-app.use((req: express.Request, res: express.Response) => {
-    res.status(404).json({ error: 'Route not found' });
-});
+// Global error handler middleware
+app.use(globalErrorHandler);
 
 // ========================================
 // START SERVER

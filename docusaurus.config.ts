@@ -67,15 +67,22 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Textbook',
+          href: 'https://github.com/muhammad-anas35',
+          position: 'right',
+          className: 'header-github-link',
+          'aria-label': 'GitHub repository',
         },
         {
-          href: 'https://github.com/muhammad-anas35',
-          label: 'GitHub',
+          to: '/login',
+          label: 'Sign In',
           position: 'right',
+          className: 'navbar-signin-button',
+        },
+        {
+          to: '/signup',
+          label: 'Sign Up',
+          position: 'right',
+          className: 'navbar-signup-button',
         },
       ],
     },

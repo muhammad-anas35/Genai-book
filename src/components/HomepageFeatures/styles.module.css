@@ -10,6 +10,17 @@ html[data-theme='dark'] .features {
   background: linear-gradient(180deg, #1a1a2e 0%, #0f172a 100%);
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .featureCard {
   border: none;
   border-radius: 16px;
@@ -21,6 +32,8 @@ html[data-theme='dark'] .features {
   overflow: hidden;
   margin: 1rem;
   height: 100%;
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
 }
 
 .featureCard:hover {
