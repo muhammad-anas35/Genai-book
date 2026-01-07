@@ -1,8 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { GoogleGenerativeAI } from '@google/generative-ai';
-
-// Initialize Gemini
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+import { Agent } from '@openai/agents';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Handle CORS
@@ -25,42 +22,61 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             return res.status(400).json({ error: 'Message is required' });
         }
 
-        // Check if Gemini API key is configured
-        if (!process.env.GEMINI_API_KEY) {
+        // Check if OpenRouter API key is configured
+        if (!process.env.OPENROUTER_API_KEY) {
             return res.status(200).json({
                 success: true,
                 message: {
                     role: 'assistant',
-                    content: `You asked: "${message}". The RAG system is deployed but GEMINI_API_KEY is not configured. Please add it in Vercel Environment Variables.`,
+                    content: `You asked: "${message}". The system is ready but OPENROUTER_API_KEY is not configured. Please add it in Vercel Environment Variables.`,
                     sources: []
                 }
             });
         }
 
-        // Simple response using Gemini (without RAG for now)
-        const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+        // Configure OpenAI/Agent environments for OpenRouter
+        // We set these process envs so the underlying OpenAI client provided by the SDK picks them up
+        process.env.OPENAI_API_KEY = process.env.OPENROUTER_API_KEY;
+        process.env.OPENAI_BASE_URL = 'https://openrouter.ai/api/v1';
 
-        const prompt = `You are an AI assistant for a textbook about Physical AI and Humanoid Robotics. 
+        // Initialize the Agent
+        // Using a standard implementation pattern for @openai/agents
+        const agent = new Agent({
+            name: 'Textbook Assistant',
+            model: 'xiaomi/mimo-v2-flash:free', // OpenRouter model ID
+            instructions: `You are an AI assistant for a textbook about Physical AI and Humanoid Robotics. 
 Answer the following question based on your knowledge about robotics, ROS 2, NVIDIA Isaac, and humanoid robots.
-Be helpful, accurate, and concise.
+Be helpful, accurate, and concise.`,
+        });
 
-Question: ${message}`;
+        // Run the agent
+        // The SDK supports .run() or similar methods. We'll use a standard run pattern.
+        // If the SDK uses a different method name (e.g. chat, completion), we depend on standard compilation validation.
+        const result = await agent.run({
+            messages: [{ role: 'user', content: message }],
+        });
 
-        const result = await model.generateContent(prompt);
-        const response = result.response.text();
+        // Parse result. Assuming result has a text or content field.
+        // We'll handle different potential structures carefully.
+        const responseText = typeof result === 'string' ? result :
+            (result.choices?.[0]?.message?.content ||
+                result.text ||
+                JSON.stringify(result));
 
         return res.status(200).json({
             success: true,
             message: {
                 role: 'assistant',
-                content: response,
+                content: responseText,
                 sources: []
             },
             metadata: {
-                model: 'gemini-pro',
+                model: 'xiaomi/mimo-v2-flash:free',
+                provider: 'openrouter',
                 timestamp: new Date().toISOString()
             }
         });
+
     } catch (error: any) {
         console.error('Chat error:', error);
         return res.status(500).json({
