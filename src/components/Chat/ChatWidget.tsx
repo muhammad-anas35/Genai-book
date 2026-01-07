@@ -77,12 +77,38 @@ export default function ChatWidget() {
         }
     };
 
+    const handleToggle = async () => {
+        // If opening the chat, check authentication first
+        if (!isOpen) {
+            try {
+                const response = await fetch('/api/auth/check');
+                const data = await response.json();
+
+                if (!data.authenticated) {
+                    // Show message and redirect to login
+                    alert('Please login to use the chat feature. You will be redirected to the login page.');
+                    window.location.href = '/login';
+                    return;
+                }
+            } catch (error) {
+                console.error('Failed to check authentication:', error);
+                // Show message and redirect to login on error
+                alert('Please login to use the chat feature. You will be redirected to the login page.');
+                window.location.href = '/login';
+                return;
+            }
+        }
+
+        // Toggle chat if authenticated or closing
+        setIsOpen(!isOpen);
+    };
+
     return (
         <div className={`chat-widget ${isOpen ? 'open' : 'closed'}`}>
             {/* Toggle Button */}
             <button
                 className="chat-toggle"
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={handleToggle}
                 aria-label={isOpen ? 'Close chat' : 'Open chat'}
             >
                 {isOpen ? '✕' : '💬'}

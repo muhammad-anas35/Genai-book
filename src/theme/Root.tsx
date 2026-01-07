@@ -7,6 +7,7 @@ import ProtectedRoute from '../components/Auth/ProtectedRoute';
 export default function Root({ children }) {
     const location = useLocation();
     const isDocsRoute = location.pathname.startsWith('/docs');
+    const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
 
     return (
         <>
@@ -17,7 +18,7 @@ export default function Root({ children }) {
             ) : (
                 children
             )}
-            <ChatWidget />
+            {!isAuthPage && <ChatWidget />}
         </>
     );
 }
