@@ -20,9 +20,11 @@
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -158,7 +160,11 @@
   filter: drop-shadow(-20px 30px 40px rgba(0, 0, 0, 0.5));
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    text-align: center;
+  }
+
   .heroContainer {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -170,10 +176,23 @@
 
   .heroDescription {
     font-size: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .heroLeft {
+    align-items: center;
+  }
+
+  .buttonsSection {
+    justify-content: center;
   }
 
   .heroRight {
     order: -1;
+    display: flex;
+    justify-content: center;
   }
 
   .robotImage {
@@ -186,10 +205,6 @@
     padding: 2rem 1.5rem;
   }
 
-  .heroContainer {
-    gap: 1rem;
-  }
-
   .heroTitle {
     font-size: 2rem;
   }
@@ -198,13 +213,9 @@
     font-size: 0.95rem;
   }
 
-  .authButtons {
-    flex-direction: column;
-    width: 100%;
-  }
-
   .button {
     width: 100%;
+    max-width: 300px;
   }
 
   .robotImage {
@@ -223,7 +234,6 @@
 
   .heroDescription {
     font-size: 0.9rem;
-    margin-bottom: 1.5rem;
   }
 
   .button {
@@ -231,269 +241,16 @@
     font-size: 0.9rem;
   }
 
-  .button img {
-    width: 20px;
-    height: 20px;
-  }
-
   .robotImage {
     max-height: 300px;
   }
 }
 
-.heroBanner {
-  padding: 0;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-  background-size: 200% 200%;
-  animation: gradient 10s ease infinite;
+/* Button Icon Styling */
+.buttonIcon {
+  transition: transform 0.3s ease;
 }
 
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.heroContent {
-  z-index: 2;
-  padding: 3rem 2rem;
-}
-
-.heroTitle {
-  font-size: 3.5rem;
-  font-weight: 800;
-  line-height: 1.2;
-  color: white;
-  margin-bottom: 1rem;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-.heroSubtitle {
-  font-size: 1.25rem;
-  font-weight: 500;
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 2.5rem;
-  letter-spacing: 0.02em;
-}
-
-.buttonsSection {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  align-items: center;
-}
-
-.button {
-  background: white;
-  color: #0f3460;
-  border: none;
-  font-weight: 600;
-  padding: 0.875rem 2rem;
-  font-size: 1.1rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  cursor: pointer;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-}
-
-.primaryBtn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-  min-width: 150px;
-}
-
-.primaryBtn:hover {
-  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-}
-
-.authButtons {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.loginBtn,
-.signupBtn {
-  background: #00d4ff;
-  color: #0f2027;
-  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
-  min-width: 140px;
-}
-
-.loginBtn:hover,
-.signupBtn:hover {
-  background: #00e7ff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.5);
-}
-
-.button img {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-}
-
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    text-align: center;
-  }
-
-  .heroTitle {
-    font-size: 2.5rem;
-  }
-
-  .heroSubtitle {
-    font-size: 1.1rem;
-  }
-
-  .authButtons {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .button {
-    width: 100%;
-    max-width: 250px;
-  }
-
-  .heroContent {
-    padding: 2rem 1rem;
-  }
-}
-
-
-
-.heroBanner {
-  padding: 0;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  text-align: left;
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-  background-size: 200% 200%;
-  animation: gradient 10s ease infinite;
-}
-
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.heroLabel {
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 1rem;
-}
-
-.heroAuthor {
-  font-size: 1.25rem;
-  font-weight: 500;
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 1.5rem;
-  letter-spacing: 0.02em;
-}
-
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 1rem;
-}
-
-.buttons .button {
-  background: white;
-  color: #0f3460;
-  border: none;
-  font-weight: 600;
-  padding: 0.875rem 2rem;
-  font-size: 1.1rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-}
-
-.buttons .button:hover {
-  background: #f0f0f0;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
-
-@media screen and (max-width: 996px) {
-  .buttons {
-    justify-content: center;
-  }
-}
-
-.bookCover {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  perspective: 1000px;
-  padding: 2rem;
-  z-index: 2;
-}
-
-.bookCover img {
-  max-width: 100%;
-  height: auto;
-  max-height: 500px;
-  transform: rotateY(-15deg) rotateX(5deg);
-  box-shadow: -20px 20px 30px rgba(0, 0, 0, 0.4);
-  border-radius: 12px;
-  transition: all 0.5s ease;
-}
-
-.bookCover img:hover {
-  transform: rotateY(0deg) rotateX(0deg) scale(1.05);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-@media screen and (max-width: 996px) {
-  .bookCover {
-    margin-top: 2rem;
-  }
-
-  .bookCover img {
-    transform: none;
-    max-height: 400px;
-  }
+.button:hover .buttonIcon {
+  transform: translateX(4px);
 }
