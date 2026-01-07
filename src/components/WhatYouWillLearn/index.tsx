@@ -13,7 +13,7 @@ type LearnItem = {
 const LearnList: LearnItem[] = [
   {
     title: 'Understand Physical AI principles and embodied intelligence',
-    image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&h=800&fit=crop&q=80',
     icon: '🧠',
     description: (
       <>
@@ -23,7 +23,7 @@ const LearnList: LearnItem[] = [
   },
   {
     title: 'Master ROS 2 (Robot Operating System) for robotic control',
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=800&fit=crop&q=80',
     icon: '⚙️',
     description: (
       <>
@@ -33,7 +33,7 @@ const LearnList: LearnItem[] = [
   },
   {
     title: 'Simulate robots with Gazebo and Unity',
-    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=1200&h=800&fit=crop&q=80',
     icon: '🎮',
     description: (
       <>
@@ -43,7 +43,7 @@ const LearnList: LearnItem[] = [
   },
   {
     title: 'Develop with the NVIDIA Isaac AI robot platform',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=800&fit=crop&q=80',
     icon: '🚀',
     description: (
       <>
@@ -53,7 +53,7 @@ const LearnList: LearnItem[] = [
   },
   {
     title: 'Design humanoid robots for natural interactions',
-    image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=1200&h=800&fit=crop&q=80',
     icon: '🤖',
     description: (
       <>
@@ -63,7 +63,7 @@ const LearnList: LearnItem[] = [
   },
   {
     title: 'Integrate GPT models for conversational robotics',
-    image: 'https://images.unsplash.com/photo-1677756119517-756a188d2d94?w=800&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1677756119517-756a188d2d94?w=1200&h=800&fit=crop&q=80',
     icon: '💬',
     description: (
       <>
@@ -73,12 +73,12 @@ const LearnList: LearnItem[] = [
   },
 ];
 
-function Learn({ title, image, icon, description }: LearnItem) {
+function Learn({ title, image, icon, description, delay }: LearnItem & { delay: string }) {
   return (
-    <div className={clsx('col col--4')}>
+    <div className={clsx('col col--4')} style={{ animationDelay: delay }}>
       <div className={clsx('card card--full-height', styles.learnCard)}>
         <div className={styles.learnImage}>
-          <img src={image} alt={title} />
+          <img src={image} alt={title} loading="lazy" />
           <div className={styles.learnIcon}>{icon}</div>
         </div>
         <div className="card__header">
@@ -102,7 +102,7 @@ export default function WhatYouWillLearn(): ReactNode {
         </div>
         <div className="row">
           {LearnList.map((props, idx) => (
-            <Learn key={idx} {...props} />
+            <Learn key={idx} {...props} delay={`${idx * 0.1}s`} />
           ))}
         </div>
       </div>

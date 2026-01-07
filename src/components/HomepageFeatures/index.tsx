@@ -39,9 +39,9 @@ const FeatureList: FeatureItem[] = [
   },
 ];
 
-function Feature({ title, image, description }: FeatureItem) {
+function Feature({ title, image, description, delay }: FeatureItem & { delay: string }) {
   return (
-    <div className={clsx('col col--4')}>
+    <div className={clsx('col col--4')} style={{ animationDelay: delay }}>
       <div className={clsx('card card--full-height', styles.featureCard)}>
         <div className={styles.featureImage}>
           <img src={image} alt={title} loading="lazy" />
@@ -63,9 +63,7 @@ export default function HomepageFeatures(): ReactNode {
       <div className="container">
         <div className="row">
           {FeatureList.map((props, idx) => (
-            <div key={idx} style={{ animationDelay: `${idx * 0.15}s` }}>
-              <Feature {...props} />
-            </div>
+            <Feature key={idx} {...props} delay={`${idx * 0.15}s`} />
           ))}
         </div>
       </div>

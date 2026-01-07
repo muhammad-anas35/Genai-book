@@ -27,6 +27,18 @@ html[data-theme='dark'] .learn {
   margin: 0 auto;
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .learnCard {
   border: none;
   border-radius: 16px;
@@ -38,6 +50,8 @@ html[data-theme='dark'] .learn {
   overflow: hidden;
   margin: 1.5rem 1rem;
   height: calc(100% - 3rem);
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
 }
 
 .learnCard:hover {
