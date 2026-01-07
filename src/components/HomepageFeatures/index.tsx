@@ -37,33 +37,6 @@ const FeatureList: FeatureItem[] = [
       </>
     ),
   },
-  {
-    title: 'ROS 2 Mastery',
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop',
-    description: (
-      <>
-        Build robust robotic systems with ROS 2. Learn nodes, topics, services, and actions to create modular and scalable robot applications.
-      </>
-    ),
-  },
-  {
-    title: 'NVIDIA Isaac Platform',
-    image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=600&fit=crop',
-    description: (
-      <>
-        Leverage NVIDIA's cutting-edge Isaac Sim and Isaac ROS for photorealistic simulation, perception, and AI-powered robot development.
-      </>
-    ),
-  },
-  {
-    title: 'Conversational AI Integration',
-    image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&h=600&fit=crop',
-    description: (
-      <>
-        Create intelligent robots that understand and respond naturally. Integrate GPT-4, voice recognition, and multimodal AI for human-robot interaction.
-      </>
-    ),
-  },
 ];
 
 function Feature({ title, image, description }: FeatureItem) {
