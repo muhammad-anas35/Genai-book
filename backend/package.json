@@ -10,7 +10,10 @@
     "start": "node dist/server.js",
     "dev:all": "concurrently \"npm start\" \"npm run dev --prefix ..\"",
     "type-check": "tsc --noEmit",
-    "ingest": "tsx src/scripts/run-ingestion.ts"
+    "ingest": "tsx src/scripts/run-ingestion.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@google/genai": "^1.31.0",

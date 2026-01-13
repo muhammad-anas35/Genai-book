@@ -3,6 +3,7 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import styles from './auth.module.css';
+import { API_BASE_URL } from '../lib/api';
 
 export default function Login(): React.ReactNode {
     const { siteConfig } = useDocusaurusContext();
@@ -17,7 +18,7 @@ export default function Login(): React.ReactNode {
         setLoading(true);
 
         try {
-            const res = await fetch('/api/auth/signin/email', {
+            const res = await fetch(`${API_BASE_URL}/api/auth/signin/email`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password }),

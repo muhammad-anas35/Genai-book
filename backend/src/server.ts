@@ -53,6 +53,12 @@ if (!process.env.DATABASE_URL) {
     loadEnvFile(envPathRoot);
 }
 
+// Support NEON_DATABASE_URL as an alias for DATABASE_URL
+if (!process.env.DATABASE_URL && process.env.NEON_DATABASE_URL) {
+    process.env.DATABASE_URL = process.env.NEON_DATABASE_URL;
+    console.log('✅ Using NEON_DATABASE_URL as DATABASE_URL');
+}
+
 // Now import other modules that need env vars
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
@@ -71,9 +77,9 @@ import { createUserPreferences } from './lib/user-preferences';
 
 // Import validation middleware
 import {
-  validateSignupInput,
-  validateLoginInput,
-  validateChatInput
+    validateSignupInput,
+    validateLoginInput,
+    validateChatInput
 } from './middleware/validation';
 
 // Import error handling utilities
@@ -210,7 +216,7 @@ app.get('/api/auth/session', async (req: AuthRequest, res: Response) => {
  * POST /api/auth/signup/email
  * Body: { email, password, name, userBackground }
  */
-app.post('/api/auth/signup/email', validateSignupInput, async (req: AuthRequest, res: Response) => {
+app.post('/api/auth/signup/email', validateSignupInput, async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
         const { email, password, name, userBackground } = req.body;
 
@@ -317,7 +323,7 @@ app.post('/api/auth/signup/email', validateSignupInput, async (req: AuthRequest,
  * POST /api/auth/signin/email
  * Body: { email, password }
  */
-app.post('/api/auth/signin/email', validateLoginInput, async (req: AuthRequest, res: Response) => {
+app.post('/api/auth/signin/email', validateLoginInput, async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
         const { email, password } = req.body;
 
@@ -500,7 +506,7 @@ app.use('/api/preferences', requireAuth, preferencesRoutes);
 // ========================================
 
 // 404 handler for undefined routes
-app.use('*', (req: express.Request, res: express.Response) => {
+app.use((req: express.Request, res: express.Response) => {
     const error = new AppError(`Route ${req.originalUrl} not found`, 404);
     res.status(404).json({
         success: false,

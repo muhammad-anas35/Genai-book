@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { sendMessage, ChatMessage, getAvailableProviders } from '../../lib/chat-api';
 import './ChatWidget.css';
+import { API_BASE_URL } from '../../lib/api';
 
 /**
  * Chat widget component for RAG-powered Q&A
@@ -81,7 +82,7 @@ export default function ChatWidget() {
         // If opening the chat, check authentication first
         if (!isOpen) {
             try {
-                const response = await fetch('/api/auth/check');
+                const response = await fetch(`${API_BASE_URL}/api/auth/check`);
                 const data = await response.json();
 
                 if (!data.authenticated) {

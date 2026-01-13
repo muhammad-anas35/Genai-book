@@ -3,6 +3,7 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import styles from './auth.module.css';
+import { API_BASE_URL } from '../lib/api';
 
 interface UserBackground {
     softwareBackground?: string;
@@ -85,7 +86,7 @@ export default function Signup(): React.ReactNode {
         setLoading(true);
 
         try {
-            const res = await fetch('/api/auth/signup/email', {
+            const res = await fetch(`${API_BASE_URL}/api/auth/signup/email`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './AuthForm.css';
+import './AuthForm.css'
+import { API_BASE_URL } from '../../lib/api';;
 
 /**
  * Login form component
@@ -26,7 +27,7 @@ export default function LoginForm() {
     setError(null);
 
     try {
-      const response = await fetch('/api/auth/signin/email', {
+      const response = await fetch(`${API_BASE_URL}/api/auth/signin/email`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -4,6 +4,7 @@ import Layout from '@theme/Layout';
 import styles from './index.module.css';
 import HomepageFeatures from '../components/HomepageFeatures';
 import WhatYouWillLearn from '../components/WhatYouWillLearn';
+import { API_BASE_URL } from '../lib/api';
 
 export default function Home(): ReactNode {
   const history = useHistory();
@@ -12,7 +13,7 @@ export default function Home(): ReactNode {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch('/api/auth/check');
+        const response = await fetch(`${API_BASE_URL}/api/auth/check`);
         const data = await response.json();
         setIsAuthenticated(data.authenticated);
       } catch (error) {

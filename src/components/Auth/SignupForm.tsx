@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './AuthForm.css';
+import { API_BASE_URL } from '../../lib/api';
 
 interface UserBackground {
   softwareBackground?: string;
@@ -78,7 +79,7 @@ export default function SignupForm() {
     setError(null);
 
     try {
-      const response = await fetch('/api/auth/signup/email', {
+      const response = await fetch(`${API_BASE_URL}/api/auth/signup/email`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
