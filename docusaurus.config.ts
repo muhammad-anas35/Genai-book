@@ -72,18 +72,6 @@ const config: Config = {
           className: 'header-github-link',
           'aria-label': 'GitHub repository',
         },
-        {
-          to: '/login',
-          label: 'Sign In',
-          position: 'right',
-          className: 'navbar-signin-button',
-        },
-        {
-          to: '/signup',
-          label: 'Sign Up',
-          position: 'right',
-          className: 'navbar-signup-button',
-        },
       ],
     },
     footer: {

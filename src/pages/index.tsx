@@ -1,35 +1,15 @@
-import { type ReactNode, useEffect, useState } from 'react';
+import { type ReactNode } from 'react';
 import { useHistory } from '@docusaurus/router';
 import Layout from '@theme/Layout';
 import styles from './index.module.css';
 import HomepageFeatures from '../components/HomepageFeatures';
 import WhatYouWillLearn from '../components/WhatYouWillLearn';
-import { API_BASE_URL } from '../lib/api';
 
 export default function Home(): ReactNode {
   const history = useHistory();
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const response = await fetch(`${API_BASE_URL}/api/auth/check`);
-        const data = await response.json();
-        setIsAuthenticated(data.authenticated);
-      } catch (error) {
-        console.error('Failed to check authentication:', error);
-        setIsAuthenticated(false);
-      }
-    };
-    checkAuth();
-  }, []);
 
   const handleGetStarted = () => {
-    if (isAuthenticated) {
-      history.push('/docs/intro');
-    } else {
-      history.push('/login');
-    }
+    history.push('/docs/intro');
   };
 
   return (

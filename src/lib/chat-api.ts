@@ -1,5 +1,5 @@
 /**
- * Chat API client for frontend
+ * Chat API client for frontend - Mock implementation
  */
 
 export interface ChatMessage {
@@ -27,127 +27,78 @@ export interface ChatResponse {
     error?: string;
 }
 
-// Use relative URL for Vercel deployment, absolute for local dev
-const API_BASE_URL = typeof window !== 'undefined' && window.location.hostname !== 'localhost'
-    ? ''
-    : 'http://localhost:4000';
-
 /**
- * Send a chat message and get AI response
+ * Simulate sending a chat message and getting a mock AI response
  */
 export async function sendMessage(
     message: string,
     chapter?: string,
     provider?: 'gemini' | 'openai'
 ): Promise<ChatResponse> {
-    try {
-        const response = await fetch(`${API_BASE_URL}/api/chat`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include', // Include cookies for authentication
-            body: JSON.stringify({ message, chapter, provider }),
-        });
+    // Simulate network delay
+    await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 1000));
 
-        if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.error || 'Failed to send message');
+    // Mock response based on the user's message
+    const mockResponse: ChatResponse = {
+        success: true,
+        message: {
+            role: 'assistant',
+            content: `I received your message: "${message}". This is a simulated response since the backend has been removed. In a real implementation, an AI would process your query and provide a relevant answer based on the available documentation.`,
+            sources: []
+        },
+        metadata: {
+            retrievalTime: 100 + Math.random() * 200,
+            generationTime: 300 + Math.random() * 400,
+            totalTime: 500 + Math.random() * 600,
+            chunksRetrieved: 3
         }
+    };
 
-        return await response.json();
-    } catch (error) {
-        console.error('Chat API error:', error);
-        throw error;
-    }
+    return mockResponse;
 }
 
 /**
- * Stream chat response (for real-time updates)
+ * Mock stream chat response (for real-time updates)
  */
 export async function* streamMessage(
     message: string,
     chapter?: string,
     provider?: 'gemini' | 'openai'
 ): AsyncGenerator<{ type: string; data: any }> {
-    try {
-        const response = await fetch(`${API_BASE_URL}/api/chat/stream`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include',
-            body: JSON.stringify({ message, chapter, provider }),
-        });
+    // Simulate streaming response
+    const parts = [
+        { type: 'chunk', data: { content: 'Processing your request...' } },
+        { type: 'chunk', data: { content: 'Analyzing query...' } },
+        { type: 'chunk', data: { content: 'Generating response...' } },
+        { type: 'complete', data: { content: `Simulated response for: "${message}"` } }
+    ];
 
-        if (!response.ok) {
-            throw new Error('Failed to stream message');
-        }
-
-        const reader = response.body?.getReader();
-        const decoder = new TextDecoder();
-
-        if (!reader) {
-            throw new Error('No response body');
-        }
-
-        while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
-
-            const chunk = decoder.decode(value);
-            const lines = chunk.split('\n');
-
-            for (const line of lines) {
-                if (line.startsWith('data: ')) {
-                    const data = JSON.parse(line.slice(6));
-                    yield data;
-                }
-            }
-        }
-    } catch (error) {
-        console.error('Stream error:', error);
-        throw error;
+    for (const part of parts) {
+        await new Promise(resolve => setTimeout(resolve, 300 + Math.random() * 200));
+        yield part;
     }
 }
 
 /**
- * Get chat history
+ * Mock get chat history
  */
 export async function getChatHistory(): Promise<any[]> {
-    try {
-        const response = await fetch(`${API_BASE_URL}/api/chat/history`, {
-            credentials: 'include',
-        });
+    // Simulate network delay
+    await new Promise(resolve => setTimeout(resolve, 200));
 
-        if (!response.ok) {
-            throw new Error('Failed to fetch history');
-        }
-
-        const data = await response.json();
-        return data.history || [];
-    } catch (error) {
-        console.error('History API error:', error);
-        return [];
-    }
+    // Return empty history or sample history
+    return [];
 }
 
 /**
- * Get available AI providers
+ * Mock get available AI providers
  */
 export async function getAvailableProviders(): Promise<{ success: boolean; providers: string[] }> {
-    try {
-        const response = await fetch(`${API_BASE_URL}/api/chat/providers`, {
-            credentials: 'include',
-        });
+    // Simulate network delay
+    await new Promise(resolve => setTimeout(resolve, 100));
 
-        if (!response.ok) {
-            throw new Error('Failed to fetch available providers');
-        }
-
-        return await response.json();
-    } catch (error) {
-        console.error('Providers API error:', error);
-        throw error;
-    }
+    return {
+        success: true,
+        providers: ['mock-ai'] // Return mock provider since backend is removed
+    };
 }
