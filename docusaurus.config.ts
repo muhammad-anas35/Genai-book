@@ -73,10 +73,6 @@ const config: Config = {
           'aria-label': 'GitHub repository',
         },
         {
-          type: 'theme',
-          position: 'right',
-        },
-        {
           to: '/auth/signin',
           label: 'Sign In',
           position: 'right',
