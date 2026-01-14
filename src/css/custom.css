@@ -660,3 +660,74 @@ img {
     max-width: 100%;
   }
 }
+
+/* Custom styling for Sign Up button to match Start Reading button */
+.navbar__item a[href="/auth/signup"],
+.navbar__link[href="/auth/signup"] {
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 0.75rem 1.5rem !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4) !important;
+  margin-left: 0.5rem !important;
+}
+
+.navbar__item a[href="/auth/signup"]:hover,
+.navbar__link[href="/auth/signup"]:hover {
+  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 6px 25px rgba(124, 58, 237, 0.6) !important;
+  text-decoration: none !important;
+  color: white !important;
+}
+
+/* Positioning: place the theme toggle just to the left of Sign In / Sign Up */
+.theme-layout-navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Ensure the theme toggle appears before the other header items */
+.theme-layout-navbar-right .toggle_vylO,
+.theme-layout-navbar-right .colorModeToggle_DEke {
+  order: 1;
+  /* reduced gap to github icon */
+  margin-right: 0.12rem;
+  margin-left: 0;
+}
+
+/* Place GitHub icon immediately after the toggle */
+.theme-layout-navbar-right .header-github-link {
+  order: 2;
+  /* reduced left margin to tighten spacing */
+  margin-left: 0.08rem;
+  margin-right: 0.4rem;
+}
+
+/* Auth links should appear to the right of the GitHub icon */
+.theme-layout-navbar-right .navbar__item[href="/auth/signin"] {
+  order: 3;
+  margin-left: 0.25rem;
+}
+
+.theme-layout-navbar-right .navbar__item[href="/auth/signup"] {
+  order: 4;
+  margin-left: 0.5rem;
+}
+
+/* Small tweak: reduce extra spacing on mobile */
+@media (max-width: 768px) {
+  .theme-layout-navbar-right .navbar__item[href="/auth/signup"] {
+    padding: 0.5rem 0.9rem !important;
+  }
+}
