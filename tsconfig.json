@@ -9,6 +9,7 @@
       "node"
     ],
     "moduleResolution": "bundler",
+    "skipLibCheck": true,
     "paths": {
       "@/*": [
         "./src/*"
@@ -18,6 +19,11 @@
   "exclude": [
     ".docusaurus",
     "build",
-    "backend"
+    "backend",
+    "api",
+    "pages/api",
+    "pages/api/**",
+    "pages/api/*",
+    "pages/api/**/*"
   ]
 }

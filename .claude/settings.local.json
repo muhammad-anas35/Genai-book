@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run test)",
+      "Bash(npm run)",
+      "Bash(npx drizzle-kit generate)",
+      "Bash(npx drizzle-kit --help)",
+      "Bash(npx drizzle-kit generate:pg)",
+      "Bash(npm install drizzle-kit@latest)",
+      "Bash(npm install dotenv)"
+    ]
+  }
+}

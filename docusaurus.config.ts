@@ -17,7 +17,7 @@ const config: Config = {
   // Set the production url of your site here
   url: 'https://muhammad-anas35.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
+  // Changed to root for direct access
   baseUrl: '/',
 
   // GitHub pages deployment config.
@@ -73,16 +73,14 @@ const config: Config = {
           'aria-label': 'GitHub repository',
         },
         {
-          to: '/login',
+          to: '/auth/signin',
           label: 'Sign In',
           position: 'right',
-          className: 'navbar-signin-button',
         },
         {
-          to: '/signup',
+          to: '/auth/signup',
           label: 'Sign Up',
           position: 'right',
-          className: 'navbar-signup-button',
         },
       ],
     },

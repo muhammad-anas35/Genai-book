@@ -84,8 +84,3 @@ drizzle/
 .gemini/settings.json
 .qwen/settings.json
 .env.local.example
-
-/backend/node_modules
-.env.example
-/backend/.env
-/backend/.env.local

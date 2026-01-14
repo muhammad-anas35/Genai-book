@@ -110,26 +110,6 @@
   box-shadow: 0 6px 25px rgba(124, 58, 237, 0.6);
 }
 
-.authButtons {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-}
-
-.loginBtn,
-.signupBtn {
-  background: #00d4ff;
-  color: #0f2027;
-  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
-  min-width: 140px;
-}
-
-.loginBtn:hover,
-.signupBtn:hover {
-  background: #00e7ff;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 25px rgba(0, 212, 255, 0.5);
-}
 
 .button img {
   width: 24px;

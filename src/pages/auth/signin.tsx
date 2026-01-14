@@ -2,42 +2,35 @@ import React, { useState } from 'react';
 import Layout from '@theme/Layout';
 import styles from './auth.module.css';
 
-export default function SignUp(): JSX.Element {
+export default function SignIn(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (password !== confirmPassword) {
-      alert('Passwords do not match!');
-      return;
-    }
-
     setLoading(true);
 
-    // Mock sign up process
+    // Mock sign in process
     setTimeout(() => {
-      alert(`Mock sign up for ${email}. In a real implementation, this would create a new user account.`);
+      alert(`Mock sign in for ${email}. In a real implementation, this would authenticate the user.`);
       setLoading(false);
     }, 1000);
   };
 
   return (
-    <Layout title="Sign Up" description="Create a new account">
+    <Layout title="Sign In" description="Sign in to your account">
       <div className={styles.authPage}>
         <div className={styles.authContainer}>
-          <h1>Sign Up</h1>
-          <p>Create a new account to access additional features.</p>
+          <h1>Sign In</h1>
+          <p>Welcome back! Please sign in to your account.</p>
 
           <form onSubmit={handleSubmit} className={styles.authForm}>
             <div className={styles.formGroup}>
-              <label htmlFor="signup-email">Email</label>
+              <label htmlFor="email">Email</label>
               <input
                 type="email"
-                id="signup-email"
+                id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -46,38 +39,26 @@ export default function SignUp(): JSX.Element {
             </div>
 
             <div className={styles.formGroup}>
-              <label htmlFor="signup-password">Password</label>
+              <label htmlFor="password">Password</label>
               <input
                 type="password"
-                id="signup-password"
+                id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                placeholder="Create a password"
-              />
-            </div>
-
-            <div className={styles.formGroup}>
-              <label htmlFor="confirm-password">Confirm Password</label>
-              <input
-                type="password"
-                id="confirm-password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-                placeholder="Confirm your password"
+                placeholder="Enter your password"
               />
             </div>
 
             <button type="submit" disabled={loading} className={styles.submitButton}>
-              {loading ? 'Creating account...' : 'Sign Up'}
+              {loading ? 'Signing in...' : 'Sign In'}
             </button>
           </form>
 
           <div className={styles.authFooter}>
             <p>
-              Already have an account?{' '}
-              <a href="/auth/signin">Sign in</a>
+              Don't have an account?{' '}
+              <a href="/auth/signup">Sign up</a>
             </p>
             <p>
               <a href="/">Back to home</a>
