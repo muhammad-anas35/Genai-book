@@ -1,0 +1,18 @@
+{
+  "title": {
+    "message": "Physical AI & Humanoid Robotics",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Panaversity Logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Sign In": {
+    "message": "Sign In",
+    "description": "Navbar item with label Sign In"
+  },
+  "item.label.Sign Up": {
+    "message": "Sign Up",
+    "description": "Navbar item with label Sign Up"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Physical AI & Humanoid Robotics Textbook": {
+    "message": "Physical AI & Humanoid Robotics Textbook",
+    "description": "The label for category 'Physical AI & Humanoid Robotics Textbook' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Chapter 1: Introduction to Physical AI": {
+    "message": "Chapter 1: Introduction to Physical AI",
+    "description": "The label for category 'Chapter 1: Introduction to Physical AI' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Chapter 2: ROS 2 Fundamentals": {
+    "message": "Chapter 2: ROS 2 Fundamentals",
+    "description": "The label for category 'Chapter 2: ROS 2 Fundamentals' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Chapter 3: Robot Simulation with Gazebo": {
+    "message": "Chapter 3: Robot Simulation with Gazebo",
+    "description": "The label for category 'Chapter 3: Robot Simulation with Gazebo' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Chapter 4: NVIDIA Isaac Platform": {
+    "message": "Chapter 4: NVIDIA Isaac Platform",
+    "description": "The label for category 'Chapter 4: NVIDIA Isaac Platform' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Chapter 5: Humanoid Robot Development": {
+    "message": "Chapter 5: Humanoid Robot Development",
+    "description": "The label for category 'Chapter 5: Humanoid Robot Development' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Chapter 6: Conversational Robotics": {
+    "message": "Chapter 6: Conversational Robotics",
+    "description": "The label for category 'Chapter 6: Conversational Robotics' in sidebar 'tutorialSidebar'"
+  }
+}
