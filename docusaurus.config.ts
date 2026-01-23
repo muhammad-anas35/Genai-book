@@ -109,11 +109,11 @@ const config: Config = {
             },
             {
               label: 'Chapter 1: Foundations',
-              to: '/docs/physical-ai-book/intro/foundations',
+              to: '/docs/physical-ai-book/part1/chapter2',
             },
             {
               label: 'Chapter 2: ROS 2',
-              to: '/docs/physical-ai-book/chapter2/ros2-architecture',
+              to: '/docs/physical-ai-book/part2/chapter12',
             },
           ],
         },

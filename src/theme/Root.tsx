@@ -4,10 +4,13 @@ import ChatWidget from '../components/Chat/ChatWidget';
 
 // Root component wrapper for Docusaurus
 export default function Root({ children }) {
+    const { pathname } = useLocation();
+    const isAuthPage = pathname.includes('/auth/');
+
     return (
         <>
             {children}
-            <ChatWidget />
+            {!isAuthPage && <ChatWidget />}
         </>
     );
 }

@@ -107,6 +107,73 @@
   text-decoration: underline;
 }
 
+/* Stepper Styles */
+.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  border: 2px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #999;
+  transition: all 0.3s ease;
+}
+
+.label {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #999;
+  font-weight: 600;
+}
+
+.active .circle {
+  border-color: #7c3aed;
+  color: #7c3aed;
+  background: white;
+}
+
+.active .label {
+  color: #7c3aed;
+}
+
+.completed .circle {
+  background: #7c3aed;
+  border-color: #7c3aed;
+  color: white;
+}
+
+.line {
+  flex: 1;
+  height: 2px;
+  background: #ddd;
+  margin: 0 10px;
+  margin-bottom: 20px; /* Align with circle center (approx) */
+  transition: background 0.3s ease;
+}
+
+.lineActive {
+  background: #7c3aed;
+}
+
 @media (max-width: 768px) {
   .authPage {
     padding: 1rem;
