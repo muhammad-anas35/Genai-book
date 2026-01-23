@@ -1,18 +1,18 @@
 {
   "title": {
-    "message": "Physical AI & Humanoid Robotics",
+    "message": "جسمانی مصنوعی ذہانت اور ہیومنائیڈ روبوٹکس",
     "description": "The title in the navbar"
   },
   "logo.alt": {
-    "message": "Panaversity Logo",
+    "message": "پینا ورسٹی لوگو",
     "description": "The alt text of navbar logo"
   },
   "item.label.Sign In": {
-    "message": "Sign In",
+    "message": "سائن ان",
     "description": "Navbar item with label Sign In"
   },
   "item.label.Sign Up": {
-    "message": "Sign Up",
+    "message": "سائن اپ",
     "description": "Navbar item with label Sign Up"
   }
 }
