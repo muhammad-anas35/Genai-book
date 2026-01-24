@@ -3,6 +3,13 @@ title: "Chapter 4: Creating Worlds and Models"
 sidebar_label: "Chapter 4: Creating Worlds and Models"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Chapter 4: Creating Worlds and Models
 
 ## Learning Objectives
@@ -460,3 +467,16 @@ export GZ_SIM_RESOURCE_PATH=$GZ_SIM_RESOURCE_PATH:~/my_gazebo_models
 
 **Previous Section**: [← 3.1 Gazebo Architecture](../chapter1/index.md)  
 **Next Section**: [3.3 URDF and Robot Description →](../chapter3/index.md)
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

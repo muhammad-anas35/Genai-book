@@ -3,6 +3,13 @@ title: "Chapter 1: Deployment Strategies"
 sidebar_label: "Chapter 1: Deployment Strategies"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Chapter 1: Deployment Strategies
 
 ## Learning Objectives
@@ -235,3 +242,16 @@ Congratulations! You've completed **Physical AI & Humanoid Robotics**. You now u
 
 **Previous Section**: [← 6.2 Multimodal Integration](../chapter2/index.md)  
 **End of Textbook** 🎓
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

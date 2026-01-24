@@ -3,6 +3,13 @@ title: "Chapter 3: URDF and Robot Description"
 sidebar_label: "Chapter 3: URDF and Robot Description"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Chapter 3: URDF and Robot Description
 
 ## Learning Objectives
@@ -466,3 +473,16 @@ gz sim robot.urdf
 
 **Previous Section**: [← 3.2 Creating Worlds and Models](../chapter4/index.md)  
 **Next Section**: [3.4 Gazebo-ROS 2 Integration →](../chapter2/index.md)
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

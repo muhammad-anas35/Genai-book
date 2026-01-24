@@ -3,6 +3,13 @@ title: "Chapter 11: Building ROS 2 Packages"
 sidebar_label: "Chapter 11: Building ROS 2 Packages"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Chapter 11: Building ROS 2 Packages
 
 ## Learning Objectives
@@ -84,3 +91,16 @@ Summary and reflection
 
 **Previous**: [2.2 Nodes and Communication Patterns](../chapter6/index.md)  
 **Next**: [2.4 Launch Files and Parameters](../chapter8/index.md)
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

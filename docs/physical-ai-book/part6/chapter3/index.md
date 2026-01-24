@@ -3,6 +3,13 @@ title: "Chapter 3: Vision-Language-Action (VLA) Foundations"
 sidebar_label: "Chapter 3: Vision-Language-Action (VLA) Foundations"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Chapter 3: Vision-Language-Action (VLA) Foundations
 
 ## Learning Objectives
@@ -136,3 +143,16 @@ trainer.train()
 
 **Previous Chapter**: [← Chapter 5: Humanoid Development](../../part5/chapter3/index.md)  
 **Next Section**: [6.2 Multimodal Integration →](../chapter2/index.md)
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

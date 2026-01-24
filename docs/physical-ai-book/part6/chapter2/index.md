@@ -3,6 +3,13 @@ title: "Chapter 2: Multimodal Integration"
 sidebar_label: "Chapter 2: Multimodal Integration"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Chapter 2: Multimodal Integration
 
 ## Learning Objectives
@@ -141,3 +148,16 @@ action = vla_model.predict(
 
 **Previous Section**: [← 6.1 VLA Foundations](../chapter3/index.md)  
 **Next Section**: [6.3 Deployment Strategies →](../chapter1/index.md)
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

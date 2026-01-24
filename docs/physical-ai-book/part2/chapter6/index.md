@@ -3,6 +3,13 @@ title: "Chapter 6: Nodes and Communication Patterns"
 sidebar_label: "Chapter 6: Nodes and Communication Patterns"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Chapter 6: Nodes and Communication Patterns
 
 ## Learning Objectives
@@ -78,3 +85,16 @@ Summary and reflection
 
 **Previous**: [2.1 ROS 2 Architecture](../chapter4/index.md)  
 **Next**: [2.3 Building ROS 2 Packages](../chapter11/index.md)
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

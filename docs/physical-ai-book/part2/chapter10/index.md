@@ -3,6 +3,13 @@ title: "Chapter 10: ROS 2 Fundamentals - Overview"
 sidebar_label: "Chapter 10: ROS 2 Fundamentals - Overview"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Chapter 10: ROS 2 Fundamentals - Overview
 
 ## About This Chapter
@@ -86,3 +93,61 @@ All examples will be tested on Unitree G1 specifications and simulatable in Gaze
 ---
 
 **Next**: [2.1 ROS 2 Architecture and Core Concepts](../chapter4/index.md)
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+# باب 2: ROS 2 کے بنیادی اصول - جائزہ (Overview)
+
+## اس باب کے بارے میں
+
+یہ باب **ROS 2 (Robot Operating System 2)** کو متعارف کرواتا ہے، جو روبوٹک سسٹمز بنانے کے لیے انڈسٹری کا معیاری مڈل ویئر ہے۔ ROS 2 وہ کمیونیکیشن لیئر، ٹولز اور لائبریریز فراہم کرتا ہے جو روبوٹ کے مختلف اجزاء (سینسرز، ادراک، کنٹرول، ایکچویٹرز) کو بغیر کسی رکاوٹ کے مل کر کام کرنے کے قابل بناتے ہیں۔
+
+## سیکھنے کے مقاصد (Learning Objectives)
+
+اس باب کے اختتام تک، آپ اس قابل ہو جائیں گے کہ:
+- ROS 2 کے آرکیٹیکچر اور بنیادی تصورات (DDS، گراف) کو سمجھ سکیں
+- مناسب ساخت کے ساتھ ROS 2 پیکجز بنا سکیں اور ان کی ترتیب کر سکیں
+- نوڈس، ٹاپکس، سروسز اور ایکشنز کے ساتھ کام کر سکیں
+- ROS 2 ایپلی کیشنز بنانے کے لیے پائتھن کوڈ لکھ سکیں
+- لانچ فائلز اور پیرامیٹر مینجمنٹ کا استعمال کر سکیں
+
+## باب کی ساخت (Chapter Structure)
+
+### ROS 2 آرکیٹیکچر اور بنیادی تصورات
+- ROS 2 ایکو سسٹم اور اس کی ضرورت
+- DDS مڈل ویئر کی بنیادی باتیں
+- Quality of Service (QoS) پالیسیز
+
+### نوڈس اور کمیونیکیشن پیٹرنز
+- اپنا پہلا ROS 2 نوڈ بنانا
+- ٹاپکس، سروسز اور ایکشنز
+
+### ROS 2 پیکجز بنانا
+- پیکج کی ساخت اور تنظیم
+- وابستگیاں (Dependencies) اور سیٹ اپ
+
+### لانچ فائلز اور پیرامیٹر مینجمنٹ
+- متعدد نوڈس کو ایک ساتھ چلانا
+- پیرامیٹر سرورز اور ری کنفیگریشن
+
+## اہم ٹیکنالوجیز
+
+| ٹیکنالوجی | ورژن | کردار |
+|------------|---------|------|
+| **ROS 2** | Humble | بنیادی مڈل ویئر |
+| **Python** | 3.10+ | ڈویلپمنٹ لینگویج |
+| **rclpy** | Latest | پائتھن کلائنٹ لائبریری |
+| **colcon** | Latest | بلڈ سسٹم |
+
+---
+
+**اگلا سیکشن**: [2.1 ROS 2 آرکیٹیکچر](../chapter12/index.md)
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

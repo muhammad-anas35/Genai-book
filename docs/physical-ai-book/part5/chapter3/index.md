@@ -3,6 +3,13 @@ title: "Chapter 3: Real Robot Deployment"
 sidebar_label: "Chapter 3: Real Robot Deployment"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Chapter 3: Real Robot Deployment
 
 ## Learning Objectives
@@ -174,3 +181,16 @@ class PerformanceMonitor(Node):
 
 **Previous Section**: [← 5.3 Whole-Body Control](../chapter4/index.md)  
 **Next Chapter**: [Chapter 6: Conversational Robotics →](../../part6/index.md)
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

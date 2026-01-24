@@ -3,6 +3,13 @@ title: "Chapter 4: ROS 2 Architecture and Core Concepts"
 sidebar_label: "Chapter 4: ROS 2 Architecture and Core Concepts"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Chapter 4: ROS 2 Architecture and Core Concepts
 
 ## Learning Objectives
@@ -74,3 +81,16 @@ Resources and links
 
 **Previous**: [Chapter 2 Overview](../chapter10/index.md)  
 **Next**: [2.2 Nodes and Communication Patterns](../chapter6/index.md)
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

@@ -3,6 +3,13 @@ title: "Chapter 1: Locomotion Control"
 sidebar_label: "Chapter 1: Locomotion Control"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Chapter 1: Locomotion Control
 
 ## Learning Objectives
@@ -138,3 +145,16 @@ class LocomotionController(Node):
 
 **Previous Chapter**: [← Chapter 4: NVIDIA Isaac](../../part4/chapter2/index.md)  
 **Next Section**: [5.2 Manipulation and Grasping →](../chapter2/index.md)
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

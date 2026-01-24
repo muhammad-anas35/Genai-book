@@ -3,6 +3,13 @@ title: "Chapter 4: Synthetic Data Generation"
 sidebar_label: "Chapter 4: Synthetic Data Generation"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Chapter 4: Synthetic Data Generation
 
 ## Learning Objectives
@@ -126,3 +133,16 @@ output/
 
 **Previous Section**: [← 4.2 Isaac Gym for RL](../chapter1/index.md)  
 **Next Section**: [4.4 Isaac ROS 2 Bridge →](../chapter2/index.md)
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

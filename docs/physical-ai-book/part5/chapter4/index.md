@@ -3,6 +3,13 @@ title: "Chapter 4: Whole-Body Control"
 sidebar_label: "Chapter 4: Whole-Body Control"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Chapter 4: Whole-Body Control
 
 ## Learning Objectives
@@ -120,3 +127,16 @@ class WholeBodyController:
 
 **Previous Section**: [← 5.2 Manipulation and Grasping](../chapter2/index.md)  
 **Next Section**: [5.4 Real Robot Deployment →](../chapter3/index.md)
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

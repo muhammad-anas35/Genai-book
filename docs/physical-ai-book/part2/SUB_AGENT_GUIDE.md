@@ -1,3 +1,10 @@
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Sub-Agent Coordination Guide - Chapter 2 Creation
 
 **Project**: Physical AI & Humanoid Robotics Interactive Textbook  
@@ -326,3 +333,16 @@ Refer to CHAPTER2_WORKFLOW.md for detailed task specifications and dependencies.
 - Chapter 1: ✅ Complete (100%)
 - Chapter 2: 🔄 In Progress - Ready for sub-agent assignment
 - Overall: **25% → Target 50% by Dec 17**
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

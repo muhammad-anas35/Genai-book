@@ -1,3 +1,10 @@
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # 🚀 How to Use Sub-Agents - Chapter 2 Execution
 
 **Status**: Ready to Begin  
@@ -357,3 +364,16 @@ The system is designed for rapid, coordinated content creation. Each task builds
 - **Overall project status**: See `COMPLETION_REPORT.md`
 
 **Ready to start? Use the prompts above!** 🚀
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

@@ -3,6 +3,13 @@ title: "Chapter 8: Launch Files and Parameter Management"
 sidebar_label: "Chapter 8: Launch Files and Parameter Management"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Chapter 8: Launch Files and Parameter Management
 
 ## Learning Objectives
@@ -85,3 +92,16 @@ Summary and reflection
 
 **Previous**: [2.3 Building ROS 2 Packages](../chapter11/index.md)  
 **Next**: [Chapter 3: Robot Simulation with Gazebo](../../part3/index.md)
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

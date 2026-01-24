@@ -3,6 +3,13 @@ title: "Chapter 1: Isaac Gym for Reinforcement Learning"
 sidebar_label: "Chapter 1: Isaac Gym for Reinforcement Learning"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Chapter 1: Isaac Gym for Reinforcement Learning
 
 ## Learning Objectives
@@ -131,3 +138,16 @@ model.learn(total_timesteps=10_000_000)
 
 **Previous Section**: [← 4.1 Isaac Sim Architecture](../chapter3/index.md)  
 **Next Section**: [4.3 Synthetic Data Generation →](../chapter4/index.md)
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

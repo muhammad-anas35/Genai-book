@@ -1,3 +1,10 @@
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Multi-Phase Completion Report - Chapter 1 & Chapter 2 Planning
 
 **Date**: December 3, 2025  
@@ -359,3 +366,16 @@ The foundation is set for rapid, coordinated content creation across the remaini
 **Project Coordinator**: Multi-Agent System  
 **Next Review Date**: December 10, 2025  
 **Contact**: Refer to CHAPTER2_WORKFLOW.md and SUB_AGENT_GUIDE.md for operational details
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

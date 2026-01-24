@@ -3,6 +3,13 @@ title: "Chapter 2: Isaac ROS 2 Bridge"
 sidebar_label: "Chapter 2: Isaac ROS 2 Bridge"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Chapter 2: Isaac ROS 2 Bridge
 
 ## Learning Objectives
@@ -155,3 +162,16 @@ simulation_app.close()
 
 **Previous Section**: [← 4.3 Synthetic Data Generation](../chapter4/index.md)  
 **Next Chapter**: [Chapter 5: Humanoid Robot Development →](../../part5/index.md)
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

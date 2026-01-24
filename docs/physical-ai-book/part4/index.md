@@ -6,6 +6,13 @@
 **Chapter Objective: "** *This chapter introduces the NVIDIA Isaac™ platform, a powerful toolkit for building and deploying AI-powered robots. You will learn about Isaac Sim for photorealistic simulation, Isaac ROS for hardware-accelerated perception, and Nav2 for advanced navigation.*"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 ## Chapter 1: Introduction to the NVIDIA Isaac Platform
 
 This section provides an overview of the NVIDIA Isaac ecosystem and its key components.
@@ -72,3 +79,16 @@ This section introduces Nav2, the standard navigation stack for ROS 2.
 
 *   **The Challenges of Bipedal Navigation:** Understand the unique challenges of path planning for bipedal humanoid robots.
 *   **Customizing Nav2 for Humanoids:** Learn how to customize the Nav2 stack to generate stable and efficient paths for your humanoid robot.
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

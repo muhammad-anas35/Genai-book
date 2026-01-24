@@ -3,6 +3,13 @@ title: "Chapter 3: Isaac Sim Architecture"
 sidebar_label: "Chapter 3: Isaac Sim Architecture"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Chapter 3: Isaac Sim Architecture
 
 ## Learning Objectives
@@ -350,3 +357,16 @@ set_target_prims(
 
 **Previous Chapter**: [← Chapter 3: Gazebo Simulation](../../part3/chapter2/index.md)  
 **Next Section**: [4.2 Isaac Gym for RL →](../chapter1/index.md)
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

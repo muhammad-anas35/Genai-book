@@ -6,6 +6,13 @@
 **Chapter Objective: "** *This chapter dives into the specifics of humanoid robot development. You will learn about the kinematics and dynamics of bipedal robots, the challenges of balance and locomotion, and the intricacies of manipulation and grasping.*"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 ## Chapter 1: The Body of a Humanoid
 
 This section explores the fundamental mechanics of a humanoid robot.
@@ -67,3 +74,16 @@ This section focuses on the design of humanoid robots that can interact with hum
 
 *   **Gestures and Body Language:** Discover how to use gestures and body language to make your robot more expressive.
 *   **Gaze and Eye Contact:** Explore the role of gaze and eye contact in human-robot interaction.
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

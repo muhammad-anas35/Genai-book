@@ -1,3 +1,10 @@
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Chapter 2 Creation Workflow - Multi-Agent Coordination
 
 **Status**: Planning Phase  
@@ -476,3 +483,16 @@ Integration (Dec 16-17)
 **Chapter 1 Status**: ✅ Complete (100%)  
 **Chapter 2 Status**: 🔄 In Progress - Planning Phase  
 **Overall Progress**: 25% → **Target 50% by Dec 17**
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

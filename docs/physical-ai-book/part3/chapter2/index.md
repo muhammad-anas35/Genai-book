@@ -3,6 +3,13 @@ title: "Chapter 2: Gazebo-ROS 2 Integration"
 sidebar_label: "Chapter 2: Gazebo-ROS 2 Integration"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Chapter 2: Gazebo-ROS 2 Integration
 
 ## Learning Objectives
@@ -505,3 +512,16 @@ Congratulations! You've completed Chapter 3: Robot Simulation with Gazebo. You n
 
 **Previous Section**: [← 3.3 URDF and Robot Description](../chapter3/index.md)  
 **Next Chapter**: [Chapter 4: NVIDIA Isaac Platform →](../../part4/index.md)
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

@@ -3,6 +3,13 @@ title: "Chapter 2: Manipulation and Grasping"
 sidebar_label: "Chapter 2: Manipulation and Grasping"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Chapter 2: Manipulation and Grasping
 
 ## Learning Objectives
@@ -130,3 +137,16 @@ class ManipulationEnv:
 
 **Previous Section**: [← 5.1 Locomotion Control](../chapter1/index.md)  
 **Next Section**: [5.3 Whole-Body Control →](../chapter4/index.md)
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

@@ -6,6 +6,13 @@
 **Chapter Objective: "** *This chapter explores the exciting intersection of robotics and conversational AI. You will learn how to integrate large language models (LLMs) like GPT with your robotic systems to create robots that can understand and respond to natural language commands.*"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 ## Chapter 1: The Power of Conversation
 
 This section introduces the concept of conversational robotics and its potential to revolutionize human-robot interaction.
@@ -67,3 +74,16 @@ This section explores the future of human-robot interaction, which will involve 
 
 *   **The Road to True Collaboration:** A look at the future of conversational robotics and the potential for robots to become true partners in our daily lives.
 *   **Ethical Considerations:** A discussion of the ethical considerations surrounding the development of highly intelligent and conversational robots.
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>

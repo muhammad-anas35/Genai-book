@@ -3,6 +3,13 @@ title: "Chapter 1: Gazebo Architecture"
 sidebar_label: "Chapter 1: Gazebo Architecture"
 ---
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+<TabItem value="en" label="English">
+
 # Chapter 1: Gazebo Architecture
 
 ## Learning Objectives
@@ -386,3 +393,16 @@ gz sim --version
 
 **Previous Chapter**: [← Chapter 2: ROS 2 Fundamentals](../../part2/chapter7/index.md)  
 **Next Section**: [3.2 Creating Worlds and Models →](../chapter4/index.md)
+
+</TabItem>
+<TabItem value="ur" label="Urdu">
+
+Translation coming soon...
+
+</TabItem>
+<TabItem value="personalize" label="Personalize">
+
+Personalization features coming soon...
+
+</TabItem>
+</Tabs>
