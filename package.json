@@ -12,22 +12,13 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc",
-    "setup": "node scripts/check-env.js && npm install && cd backend && npm install",
-    "dev:all": "concurrently \"npm run start\" \"cd backend && npm run dev\"",
-    "db:generate": "cd backend && npm run db:generate",
-    "db:push": "cd backend && npm run db:push"
+    "typecheck": "tsc"
   },
   "dependencies": {
     "@docusaurus/core": "3.9.2",
     "@docusaurus/preset-classic": "3.9.2",
     "@mdx-js/react": "^3.1.0",
-    "@neondatabase/serverless": "^1.0.2",
-    "@openai/agents": "^0.3.7",
-    "better-auth": "^1.2.8",
-    "better-sqlite3": "^12.5.0",
     "clsx": "^2.1.1",
-    "drizzle-orm": "^0.44.7",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.2.1",
     "react-dom": "^19.2.1"
@@ -37,10 +28,7 @@
     "@docusaurus/tsconfig": "3.9.2",
     "@docusaurus/types": "3.9.2",
     "@types/dotenv": "^6.1.1",
-    "@types/next": "^8.0.7",
     "@types/react": "^19.2.7",
-    "concurrently": "^9.1.2",
-    "drizzle-kit": "^0.31.8",
     "typescript": "~5.8.3"
   },
   "browserslist": {
